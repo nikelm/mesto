@@ -1,0 +1,9 @@
+.rectangle {
+  margin: 0 auto;
+  margin-top: 25px;
+  max-width: 246px;
+  max-height: 23px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
