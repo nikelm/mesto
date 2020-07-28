@@ -1,0 +1,11 @@
+@import url(./__info/profile__info.css);
+@import url(./__user/profile__user.css);
+@import url(./__button-edit/profile__button-edit.css);
+@import url(./__button-add/profile__button-add.css);
+
+.profile {
+  margin: 0 auto;
+  max-width: 882px;
+  display: flex;
+  align-items: center;
+}

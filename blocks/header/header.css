@@ -3,7 +3,9 @@
   max-width: 882px;
   min-height: 74px;
   margin-top: 45px;
+  margin-bottom: 36.25px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  
 }

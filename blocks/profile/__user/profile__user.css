@@ -1,0 +1,5 @@
+.profile__user {
+  max-height: 43px;
+  display: flex;
+  align-items: flex-end;
+}

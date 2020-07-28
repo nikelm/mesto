@@ -1,0 +1,7 @@
+.profile__button-edit {
+  max-width: 24px;
+  max-height: 24px;
+  background-image: url(../../../images/Vector_editButton.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
