@@ -3,6 +3,7 @@
 
 .elements {
   margin: 0 auto;
+  margin-top: 46.25px;
   max-width: 882px;
   display: grid;
   grid-template-columns: repeat(3, minmax(282px, 1fr));
