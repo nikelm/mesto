@@ -12,9 +12,10 @@
     <div class="line"></div>
   </header>
   <main class="main">
-    <section class="popup popup_opened">
+    <!--<section class="popup popup_opened">-->
+    <section class="popup">
       <form class="popup__container">
-        <div class="popup__close"></div>
+        <button class="popup__close"></button>
         <fieldset class="popup__profile">
           <label for="popup__item" class="popup__label">Редактировать профиль</label>
           <input type="text" id="popup__item" class="popup__input">
@@ -28,9 +29,7 @@
       <div class="profile__info">
         <div class="profile__user">
           <h1 class="title">Жак-Ив Кусто</h1>
-          <a href="">
-            <img class="profile__button-edit" src="./images/Rectangle_button_edit.png" alt="Подложка под кнопку 'Редактировать профиль'">
-          </a>
+          <button class="profile__link"></button>
         </div>
         <p class="paragraph">Исследователь океана</p>
       </div>
@@ -98,5 +97,6 @@
   <footer class="footer">
     <p class="copyright">&copy; 2020 Mesto Russia</p>
   </footer>
+  <script src="./pages/index.js"></script>
 </body>
 </html>

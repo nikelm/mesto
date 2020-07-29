@@ -2,6 +2,7 @@
 @import url(./__user/profile__user.css);
 @import url(./__button-edit/profile__button-edit.css);
 @import url(./__button-add/profile__button-add.css);
+@import url(./__link/profile__link.css);
 
 .profile {
   margin: 0 auto;
