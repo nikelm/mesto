@@ -12,15 +12,15 @@
     <div class="line"></div>
   </header>
   <main class="main">
-    <section class="pop-up">
-      <a href=""><div class="pop-up__close"></div></a>
-      <h3 class="pop-up__title">Редактировать профиль</h3>
-      <form class="form">
-        <fieldset class="form__input-container">
-          <input class="form__item" type="text">
-          <input class="form__item" type="text">
+    <section class="popup popup_opened">
+      <form class="popup__container">
+        <div class="popup__close"></div>
+        <fieldset class="popup__profile">
+          <label for="popup__item" class="popup__label">Редактировать профиль</label>
+          <input type="text" id="popup__item" class="popup__input">
+          <input type="text" id="popup__item" class="popup__input">
         </fieldset>
-        <button type="submit">Сохранить</button>
+        <button class="popup__button">Сохранить</button>
       </form>
     </section>
     <section class="profile">

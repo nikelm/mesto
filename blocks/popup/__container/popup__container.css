@@ -1,0 +1,10 @@
+.popup__container {
+  min-width: 430px;
+  min-height: 330px;
+  background-image: url(../../../images/Rectangle-Pop-Up.png);
+  background-position: center;
+  text-align: center;
+  
+  
+  
+}

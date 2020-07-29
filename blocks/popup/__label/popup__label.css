@@ -1,13 +1,10 @@
-.pop-up__title {
-  margin: 0;
-  padding-top: 34px;
-  min-width: 330px;
-  text-align: center;
+.popup__label {
+  display: block;
+  margin-bottom: 54px;
   font-family: Inter;
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
   line-height: 29px;
   color: #000000;
-  margin-bottom: 54px;
 }

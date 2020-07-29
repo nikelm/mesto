@@ -1,10 +1,10 @@
-.pop-up__close {
-  min-width: 40.7px;
+.popup__close {
+  max-width: 40.7px;
   min-height: 40.7px;
   background-image: url(../../../images/CloseIcon.png);
   background-repeat: no-repeat;
   background-position: center;
-  position: absolute;
-  right: -40px;
-  top: -40px;
+  position: relative;
+  top: -35px;
+  right: -425px;
 }
