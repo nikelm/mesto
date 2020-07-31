@@ -15,13 +15,14 @@
     <!--<section class="popup popup_opened">-->
     <section class="popup">
       <form class="popup__container">
-        <button class="popup__close"></button>
+        <button class="popup__close" type="button"></button>
         <fieldset class="popup__profile">
-          <label for="popup__item" class="popup__label">Редактировать профиль</label>
-          <input type="text" id="popup__item" class="popup__input">
-          <input type="text" id="popup__item" class="popup__input">
+          <label for="popup__item-name" class="popup__label">Редактировать профиль</label>
+          <input type="text" id="popup__item-name" class="popup__input popup__input-name">
+          <label for="popup__item-description"></label>
+          <input type="text" id="popup__item-description" class="popup__input popup__input-description">
         </fieldset>
-        <button class="popup__button">Сохранить</button>
+        <button class="popup__button" type="submit">Сохранить</button>
       </form>
     </section>
     <section class="profile">
@@ -33,9 +34,7 @@
         </div>
         <p class="paragraph">Исследователь океана</p>
       </div>
-      <a href="">
-        <img src="./images/Rectangle_button-add.png" alt="Подложка под кнопку 'Добавить профиль'" class="profile__button-add">
-      </a>
+      <button class="profile__add" type="button"></button>
     </section>
     <section class="elements">
       <div class="elements__item">
@@ -97,6 +96,6 @@
   <footer class="footer">
     <p class="copyright">&copy; 2020 Mesto Russia</p>
   </footer>
-  <script src="./pages/index.js"></script>
+  <script src="./script/index.js"></script>
 </body>
 </html>

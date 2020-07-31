@@ -1,7 +1,7 @@
 .title {
   margin: 0;
   padding: 0;
-  min-width: 295px;
+  max-width: 336px;
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
@@ -10,4 +10,14 @@
   color: #FFFFFF;
   margin-right: 17px;
   align-self: center;
+  /*outline: solid green;*/
+}
+
+@media screen and (min-width: 320px) and (max-width: 882px) {  
+  .title {
+    margin-top: 10.25px;
+    min-width: 201px;
+    font-size: 27px;
+    text-align: center;
+  }  
 }

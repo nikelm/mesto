@@ -11,4 +11,10 @@
   font-size: 18px;
   line-height: 22px;
   color: #ffffff;
+  cursor: pointer;
+}
+
+.popup__button:hover {
+  /*background-color: #e5e5e5;*/
+  background-color: rgba(0,0,0,0.8);
 }

@@ -1,12 +1,19 @@
 @import url(./__info/profile__info.css);
 @import url(./__user/profile__user.css);
-@import url(./__button-edit/profile__button-edit.css);
 @import url(./__button-add/profile__button-add.css);
 @import url(./__link/profile__link.css);
+@import url(./__add/profile__add.css);
 
 .profile {
   margin: 0 auto;
   max-width: 882px;
   display: flex;
   align-items: center;
+}
+
+@media screen and (min-width: 320px) and (max-width: 882px) {  
+  .profile {
+    max-width: 282px;
+    flex-direction: column;
+  }  
 }
