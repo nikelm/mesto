@@ -8,19 +8,18 @@
 </head>
 <body class="body">
   <header class="header">
-    <img class="logo" src="./images/Vector_header.png" alt="Логотип">
-    <div class="line"></div>
+    <img class="logo" src="./images/logo_header.svg" alt="Логотип">
   </header>
   <main class="main">
     <!--<section class="popup popup_opened">-->
     <section class="popup">
-      <form class="popup__container">
+      <form class="popup__container" name="userprofile">
         <button class="popup__close" type="button"></button>
         <fieldset class="popup__profile">
-          <label for="popup__item-name" class="popup__label">Редактировать профиль</label>
-          <input type="text" id="popup__item-name" class="popup__input popup__input-name">
-          <label for="popup__item-description"></label>
-          <input type="text" id="popup__item-description" class="popup__input popup__input-description">
+          <label class="popup__label">Редактировать профиль</label>
+          <input type="text" class="popup__input popup__input_type_name" name="fullname">
+          <label></label>
+          <input type="text" class="popup__input popup__input_type_description" name="job">
         </fieldset>
         <button class="popup__button" type="submit">Сохранить</button>
       </form>
@@ -29,72 +28,60 @@
       <img class="avatar" src="./images/image1.jpg" alt="Ж.И. Кусто">
       <div class="profile__info">
         <div class="profile__user">
-          <h1 class="title">Жак-Ив Кусто</h1>
-          <button class="profile__link"></button>
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <button class="profile__link" type="button"></button>
         </div>
-        <p class="paragraph">Исследователь океана</p>
+        <p class="profile__paragraph">Исследователь океана</p>
       </div>
       <button class="profile__add" type="button"></button>
     </section>
     <section class="elements">
-      <div class="elements__item">
-        <img class="elements__image" src="./images/kirill-pershin-1088404-unsplash.png" alt="Карачаевск">
-        <div class="rectangle">
-          <h3 class="subtitle">Карачаевск</h3>
-          <a href="">
-            <img class="like-img" src="./images/Vector_heart.png" alt="Like">
-          </a>
+      <div class="cards">
+        <img class="cards__image" src="./images/kirill-pershin-1088404-unsplash.png" alt="Карачаевск">
+        <div class="cards__item-rectangle">
+          <h3 class="cards__item-subtitle">Карачаевск</h3>
+          <button type="button" class="cards__item-button"></button>
         </div>
       </div>
-      <div class="elements__item">
-        <img class="elements__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус">
-        <div class="rectangle">
-          <h3 class="subtitle">Гора Эльбрус</h3>
-          <a href="">
-            <img class="like-img" src="./images/Vector_heart.png" alt="Like">
-          </a>
+      <div class="cards">
+        <img class="cards__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус">
+        <div class="cards__item-rectangle">
+          <h3 class="cards__item-subtitle">Гора Эльбрус</h3>
+          <button type="button" class="cards__item-button"></button>
         </div>
       </div>
-      <div class="elements__item">
-        <img class="elements__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Домбай">
-        <div class="rectangle">
-          <h3 class="subtitle">Домбай</h3>
-          <a href="">
-            <img class="like-img" src="./images/Vector_heart.png" alt="Like">
-          </a>
+      <div class="cards">
+        <img class="cards__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Домбай">
+        <div class="cards__item-rectangle">
+          <h3 class="cards__item-subtitle">Домбай</h3>
+          <button type="button" class="cards__item-button"></button>
         </div>
       </div>
-      <div class="elements__item">
-        <img class="elements__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус">
-        <div class="rectangle">
-          <h3 class="subtitle">Гора Эльбрус</h3>
-          <a href="">
-            <img class="like-img" src="./images/Vector_heart.png" alt="Like">
-          </a>
+      <div class="cards">
+        <img class="cards__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус">
+        <div class="cards__item-rectangle">
+          <h3 class="cards__item-subtitle">Гора Эльбрус</h3>
+          <button type="button" class="cards__item-button"></button>
         </div>
       </div>
-      <div class="elements__item">
-        <img class="elements__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Домбай">
-        <div class="rectangle">
-          <h3 class="subtitle">Домбай</h3>
-          <a href="">
-            <img class="like-img" src="./images/Vector_heart.png" alt="Like">
-          </a>
+      <div class="cards">
+        <img class="cards__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Домбай">
+        <div class="cards__item-rectangle">
+          <h3 class="cards__item-subtitle">Домбай</h3>
+          <button type="button" class="cards__item-button"></button>
         </div>
       </div>
-      <div class="elements__item">
-        <img class="elements__image" src="./images/kirill-pershin-1088404-unsplash.png" alt="Карачаево-Черкесия">
-        <div class="rectangle">
-          <h3 class="subtitle">Карачаево-Черкесия</h3>
-          <a href="">
-            <img class="like-img" src="./images/Vector_heart.png" alt="Like">
-          </a>
+      <div class="cards">
+        <img class="cards__image" src="./images/kirill-pershin-1088404-unsplash.png" alt="Карачаево-Черкесия">
+        <div class="cards__item-rectangle">
+          <h3 class="cards__item-subtitle">Карачаево-Черкесия</h3>
+          <button type="button" class="cards__item-button"></button>
         </div>
       </div>
     </section>
   </main>
   <footer class="footer">
-    <p class="copyright">&copy; 2020 Mesto Russia</p>
+    <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
   <script src="./script/index.js"></script>
 </body>

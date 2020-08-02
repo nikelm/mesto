@@ -1,6 +1,3 @@
-@import url(./__image/elements__image.css);
-@import url(./__item/elements__item.css);
-
 .elements {
   margin: 0 auto;
   margin-top: 46.25px;
@@ -11,12 +8,12 @@
   grid-gap: 18px;
 }
 
-@media screen and (min-width: 320px) and (max-width: 882px) {   
+@media screen and (min-width: 320px) and (max-width: 882px) {
   .elements {
     max-width: 282px;
     grid-template-columns: repeat(1, minmax(282px, 1fr));
     grid-template-rows: repeat(6, minmax(361px, 1fr));
     grid-gap: 20px;
-  }  
+  }
 }
 

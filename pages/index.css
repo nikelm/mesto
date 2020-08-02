@@ -3,17 +3,12 @@
 @import url(../blocks/body/body.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/logo/logo.css);
-@import url(../blocks/line/line.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/avatar/avatar.css);
-@import url(../blocks/title/title.css);
-@import url(../blocks/paragraph/paragraph.css);
 @import url(../blocks/elements/elements.css);
-@import url(../blocks/rectangle/rectangle.css);
-@import url(../blocks/subtitle/subtitle.css);
-@import url(../blocks/like-img/like-img.css);
+@import url(../blocks/cards/cards.css);
 @import url(../blocks/footer/footer.css);
-@import url(../blocks/copyright/copyright.css);
+
 

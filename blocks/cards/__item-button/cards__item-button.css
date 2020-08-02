@@ -1,0 +1,9 @@
+.cards__item-button {
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  min-width: 20.76px;
+  min-height: 18.13px;
+  background-image: url(../../../images/heart.svg);
+}

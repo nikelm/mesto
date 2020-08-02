@@ -1,5 +1,7 @@
 @import url(./__info/profile__info.css);
 @import url(./__user/profile__user.css);
+@import url(./__title/profile__title.css);
+@import url(./__paragraph/profile__paragraph.css);
 @import url(./__link/profile__link.css);
 @import url(./__add/profile__add.css);
 

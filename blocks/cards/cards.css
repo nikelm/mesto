@@ -1,0 +1,10 @@
+@import url(./__image/cards__image.css);
+@import url(./__item-button/cards__item-button.css);
+@import url(./__item-rectangle/cards__item-rectangle.css);
+@import url(./__item-subtitle/cards__item-subtitle.css);
+
+.cards {
+  max-width: 282px;
+  max-height: 361px;
+  background-image: url(../../images/Rectangle.png);
+}

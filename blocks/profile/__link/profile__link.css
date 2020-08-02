@@ -1,10 +1,9 @@
 .profile__link {
-  border: 0;
   padding: 0;
   min-width: 24px;
   min-height: 24px;
   background-color: #000000;
-  background-image: url(../../../images/Vector_editButton.png);
+  background-image: url(../../../images/EditButton.svg);
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
@@ -14,9 +13,10 @@
 }
 
 .profile__link:hover {
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  /*border: 1px solid rgba(255, 255, 255, 0.6);
   box-sizing: border-box;
   background-image: url(../../../images/Vector_editButton1.png);
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center;*/
+  opacity: 0.6;
 }
