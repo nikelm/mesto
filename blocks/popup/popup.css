@@ -7,7 +7,6 @@
 @import url(./__button/popup__button.css);
 
 .popup {
-  
   position: fixed;
   align-items: center;
   justify-content: center;
