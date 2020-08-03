@@ -1,6 +1,7 @@
 .cards__item-rectangle {
-  outline: solid yellow;
+  
   background-color: #ffffff;
+  max-height: 23px;
   display: flex;
   justify-content: space-between;
   align-items: center;
