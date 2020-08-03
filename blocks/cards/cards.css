@@ -4,7 +4,10 @@
 @import url(./__item-subtitle/cards__item-subtitle.css);
 
 .cards {
-  max-width: 282px;
-  max-height: 361px;
-  background-image: url(../../images/Rectangle.png);
+  width: 282px;
+  height: 361px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  
 }
