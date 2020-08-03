@@ -6,4 +6,11 @@
   min-width: 20.76px;
   min-height: 18.13px;
   background-image: url(../../../images/heart.svg);
+  margin-top: 6px;
+  margin-right: 7.24px;
+ 
+}
+
+.cards__item-button:hover {
+  opacity: 0.6;
 }

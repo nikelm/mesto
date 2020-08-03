@@ -1,6 +1,5 @@
 .cards__item-rectangle {
-  margin: 0 auto;
-  margin-top: 25px;
+  padding: 25px 15px 31px 21px;
   max-width: 246px;
   max-height: 23px;
   display: flex;
