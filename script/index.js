@@ -34,6 +34,36 @@ const initialCards = [
   }
 ];
 
+function cards() {
+  const cardsTemplate = document.querySelector('.template').content;
+  const card = document.querySelector('.elements');
+  let cardsItem = cardsTemplate.cloneNode(true);
+
+  return card.append(cardsItem);
+
+}
+
+for (let i = 0; i < initialCards.length; i++) {
+  cards();
+}
+
+let image = document.querySelectorAll('.cards__image');
+let subtitle = document.querySelectorAll('.cards__item-subtitle');
+
+
+for (let i = 0; i < subtitle.length; i++) {
+  initialCards.forEach(function (item) {
+    subtitle[i].textContent = item.name;
+    image[i].src = item.link;
+  });
+  console.log(subtitle.textContent);
+}
+/*
+initialCards.forEach(function (item) {
+
+  console.log(cardsText);
+});*/
+
 
 function openPopup() {
   popup.classList.add('popup_opened');
