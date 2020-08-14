@@ -34,6 +34,33 @@ const initialCards = [
   }
 ];
 
+
+const cardsContainer = document.querySelector('.elements');
+
+const addCard = (cardName, cardLink) => {
+
+  for (let i = 0; i < initialCards.length; i++) {
+    cardName = initialCards[i].name;
+    cardLink= initialCards[i].link;
+
+    const cardsTemplate = document.querySelector('.template').content.cloneNode(true);
+
+    cardsTemplate.querySelector('.cards__item-subtitle').textContent = cardName;
+    cardsTemplate.querySelector('.cards__image').src = cardLink;
+
+    cardsContainer.append(cardsTemplate);
+  }
+
+}
+
+initialCards.forEach(addCard);
+
+/*
+for (let i = 0; i < initialCards.length; i++) {
+console.log(initialCards[i].name);
+}*/
+
+/*
 function cards() {
   const cardsTemplate = document.querySelector('.template').content;
   const card = document.querySelector('.elements');
@@ -44,7 +71,7 @@ function cards() {
 }
 
 for (let i = 0; i < initialCards.length; i++) {
-  cards();
+  card();
 }
 
 let image = document.querySelectorAll('.cards__image');
