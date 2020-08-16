@@ -58,7 +58,7 @@ const addCards = (card) => {
   evt.preventDefault();
 
   like.classList.toggle('cards__like_active');
-  
+
   });
 
   cardsContainer.append(cardsTemplate);
