@@ -7,6 +7,13 @@ let formElement = document.querySelector('.popup__container');
 let nameInput = document.querySelector('.popup__input_type_name');
 let jobInput = document.querySelector('.popup__input_type_description');
 
+let addPlace = document.querySelector('.addplace');
+let btnAddPlace = document.querySelector('.profile__add');
+let btnClosePlace = document.querySelector('.addplace__close');
+let formElementPlace = document.querySelector('.addplace__container');
+let nameInputPlace = document.querySelector('.addplace__input_type_name');
+let linkInputPlace = document.querySelector('.addplace__input_type_link');
+
 const initialCards = [
   {
       name: 'Архыз',
@@ -34,36 +41,31 @@ const initialCards = [
   }
 ];
 
-function cards() {
-  const cardsTemplate = document.querySelector('.template').content;
-  const card = document.querySelector('.elements');
-  let cardsItem = cardsTemplate.cloneNode(true);
 
-  return card.append(cardsItem);
+const cardsContainer = document.querySelector('.elements');
 
-}
+const addCards = (card) => {
 
-for (let i = 0; i < initialCards.length; i++) {
-  cards();
-}
+  const cardsTemplate = document.querySelector('.template').content.cloneNode(true);
 
-let image = document.querySelectorAll('.cards__image');
-let subtitle = document.querySelectorAll('.cards__item-subtitle');
+  cardsTemplate.querySelector('.cards__item-subtitle').textContent = card.name;
+  cardsTemplate.querySelector('.cards__image').src = card.link;
 
+  const like = cardsTemplate.querySelector('.cards__like');
+  const btnlike = cardsTemplate.querySelector('.cards__item-button');
 
-for (let i = 0; i < subtitle.length; i++) {
-  initialCards.forEach(function (item) {
-    subtitle[i].textContent = item.name;
-    image[i].src = item.link;
+  btnlike.addEventListener('click', function(evt) {
+  evt.preventDefault();
+
+  like.classList.toggle('cards__like_active');
+  
   });
-  console.log(subtitle.textContent);
+
+  cardsContainer.append(cardsTemplate);
+
 }
-/*
-initialCards.forEach(function (item) {
 
-  console.log(cardsText);
-});*/
-
+initialCards.forEach(addCards);
 
 function openPopup() {
   popup.classList.add('popup_opened');
@@ -89,6 +91,51 @@ function formSubmitHandler (evt) {
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
+
+function openAddPlace() {
+  addPlace.classList.add('addplace_opened');
+  formElementPlace.reset();
+}
+
+btnAddPlace.addEventListener('click', openAddPlace);
+
+function closeAddPlace() {
+  addPlace.classList.remove('addplace_opened');
+}
+
+btnClosePlace.addEventListener('click', closeAddPlace);
+
+function deleteCards () {
+  const oldCards = document.querySelector('.cards');
+  oldCards.remove();
+}
+
+function formPlaceSubmitHandler (evt) {
+  evt.preventDefault();
+
+  for (let index = 0; index < initialCards.length; index++) {
+    deleteCards ();
+  }
+
+  initialCards.unshift({name: `${nameInputPlace.value}`, link: `${linkInputPlace.value}`});
+
+  initialCards.forEach(addCards);
+
+  closeAddPlace();
+}
+
+formElementPlace.addEventListener('submit', formPlaceSubmitHandler);
+
+
+/*const btnlike = document.querySelector('.cards__item-button');
+const like = document.querySelector('.cards__like');
+
+btnlike.addEventListener('click', function(evt) {
+  evt.preventDefault();
+
+    like.classList.toggle('cards__like_active');
+
+});*/
 
 
 

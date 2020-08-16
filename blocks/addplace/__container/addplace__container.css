@@ -1,0 +1,17 @@
+.addplace__container {
+  min-width: 430px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  background-position: center;
+  text-align: center;
+
+}
+
+@media screen and (min-width: 320px) and (max-width: 882px) {
+  .addplace__container {
+
+    max-width: 260px;
+    min-width: 260px;
+  }
+}

@@ -5,12 +5,16 @@
   background-color: transparent;
   min-width: 20.76px;
   min-height: 18.13px;
-  background-image: url(../../../images/heart.svg);
+  /*background-image: url(../../../images/heart.svg);*/
   margin-top: 6px;
   margin-right: 7.24px;
- 
+
 }
 
 .cards__item-button:hover {
-  opacity: 0.6;
+opacity: 0.6;
+}
+
+.cards__item-button:focus {
+  outline: none;
 }

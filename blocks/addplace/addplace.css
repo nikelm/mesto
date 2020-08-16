@@ -1,0 +1,19 @@
+@import url(./__container/addplace__container.css);
+@import url(./__close/addplace__close.css);
+@import url(./__profile/addplace__profile.css);
+@import url(./__label/addplace__label.css);
+@import url(./__input/addplace__input.css);
+@import url(./__button/addplace__button.css);
+
+.addplace {
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+  margin: auto;
+  display: none;
+}
