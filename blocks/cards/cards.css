@@ -1,4 +1,6 @@
+@import url(./__button/cards__button.css);
 @import url(./__image/cards__image.css);
+@import url(./__delete-icon/cards__delete-icon.css);
 @import url(./__item-button/cards__item-button.css);
 @import url(./__item-rectangle/cards__item-rectangle.css);
 @import url(./__item-subtitle/cards__item-subtitle.css);
@@ -10,4 +12,5 @@
   display: flex;
   flex-direction: column;
   background-image: url(../../images/Rectangle.png);
+  position: relative;
 }

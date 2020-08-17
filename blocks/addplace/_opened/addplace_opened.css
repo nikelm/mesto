@@ -1,3 +1,4 @@
 .addplace_opened {
   display: flex;
+  z-index: 10;
 }
