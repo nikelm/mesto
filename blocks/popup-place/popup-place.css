@@ -1,0 +1,8 @@
+@import url(./__image/popup-place__image.css);
+@import url(./__title/popup-place__title.css);
+
+.popup-place {
+  max-width: 75vw;
+  max-height: 75vh;
+  outline: red solid;
+}

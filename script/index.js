@@ -152,7 +152,7 @@ function formPlaceSubmitHandler (evt) {
   let newCard =[];
 
   newCard.unshift({name: `${nameInputPlace.value}`, link: `${linkInputPlace.value}`});
-
+  
   newCard.forEach(addCard);
 
   closeAddPlace();

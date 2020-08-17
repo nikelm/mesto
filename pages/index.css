@@ -11,6 +11,8 @@
 @import url(../blocks/addplace/_opened/addplace_opened.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/cards/cards.css);
+@import url(../blocks/popup-place/popup-place.css);
+@import url(../blocks/popup-place/_opened/popup-place_opened.css);
 @import url(../blocks/footer/footer.css);
 
 
