@@ -1,8 +1,19 @@
+@import url(./__container/popup-place__container.css);
 @import url(./__image/popup-place__image.css);
 @import url(./__title/popup-place__title.css);
+@import url(./__close/popup-place__close.css);
 
 .popup-place {
-  max-width: 75vw;
-  max-height: 75vh;
-  outline: red solid;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.9);
+  margin: auto;
+  display: none;
+  z-index: 10;
+
 }
