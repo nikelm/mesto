@@ -45,6 +45,7 @@ const initialCards = [
 const cardsContainer = document.querySelector('.elements'); //Куда копируем
 let imageSource = document.querySelector('.popup-place__image');
 let imageName = document.querySelector('.popup-place__title');
+const openPlace = document.querySelector('.popup-place');
 
 // Добавляем карточки на страницу
 const addCards = (card) => {
@@ -76,8 +77,9 @@ const addCards = (card) => {
   });
 
   //Показать изображение
+
   const placeImage = cardsTemplate.querySelector('.cards__button');
-  const openPlace = document.querySelector('.popup-place');
+
 
   placeImage.addEventListener('click', function(evt) {
     evt.preventDefault();
@@ -85,6 +87,8 @@ const addCards = (card) => {
       function openPopupPlace() {
         imageSource.src = source.src;
         imageName.textContent = namePlace.textContent;
+        //openPlace.classList.toggle('popup-place_closed');
+
         openPlace.classList.add('popup-place_opened');
 
       }
@@ -97,7 +101,10 @@ const addCards = (card) => {
   closeImage.addEventListener('click', function(evt) {
     evt.preventDefault();
 
+    //openPlace.classList.remove('popup-place_opened');
+    
     openPlace.classList.remove('popup-place_opened');
+
   });
 
   cardsContainer.append(cardsTemplate);
@@ -106,6 +113,7 @@ const addCards = (card) => {
 
 initialCards.forEach(addCards);
 
+openPlace.classList.remove('popup-place_opened');
 
 //Добавляем вручную карточки на страницу
 const addCard = (card) => {
@@ -166,7 +174,7 @@ const addCard = (card) => {
 }
 
 function openPopup() {
-  popup.classList.toggle('popup_opened');
+  popup.classList.add('popup_opened');
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
 }
@@ -174,12 +182,12 @@ function openPopup() {
 btnEdit.addEventListener('click', openPopup);
 
 function closePopup() {
-  //popup.classList.remove('popup_opened');
 
+ popup.classList.remove('popup_opened');
 }
 
-//btnClose.addEventListener('click', closePopup);
-btnClose.addEventListener('click', openPopup);
+btnClose.addEventListener('click', closePopup);
+
 
 function formSubmitHandler (evt) {
   evt.preventDefault();
@@ -201,6 +209,7 @@ function openAddPlace() {
 btnAddPlace.addEventListener('click', openAddPlace);
 
 function closeAddPlace() {
+
   addPlace.classList.remove('addplace_opened');
 }
 
@@ -221,6 +230,8 @@ function formPlaceSubmitHandler (evt) {
 }
 
 formElementPlace.addEventListener('submit', formPlaceSubmitHandler);
+
+
 
 
 
