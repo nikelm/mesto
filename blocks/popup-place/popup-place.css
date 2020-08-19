@@ -4,21 +4,23 @@
 @import url(./__close/popup-place__close.css);
 
 .popup-place {
+
   position: fixed;
-  align-items: center;
-  justify-content: center;
-  top: 100px;
+
+  top: 0;
+  left: 0;
+  padding: 90px;
   right: 0;
   bottom: 0;
-  left: 0;
-  background-color: rgba(0,0,0,0.9);
   margin: auto;
+  background-color: rgba(0,0,0,0.9);
+
   /*display: none;*/
   z-index: 10;
 
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s, opacity 0.5s linear;
+  transition: visibility 0.5s, opacity 1.5s linear;
 
 }
 
