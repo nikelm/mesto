@@ -87,7 +87,6 @@ const addCards = (card) => {
       function openPopupPlace() {
         imageSource.src = source.src;
         imageName.textContent = namePlace.textContent;
-        //openPlace.classList.toggle('popup-place_closed');
 
         openPlace.classList.add('popup-place_opened');
 
@@ -101,11 +100,11 @@ const addCards = (card) => {
   closeImage.addEventListener('click', function(evt) {
     evt.preventDefault();
 
-    //openPlace.classList.remove('popup-place_opened');
-    
     openPlace.classList.remove('popup-place_opened');
 
   });
+
+
 
   cardsContainer.append(cardsTemplate);
 

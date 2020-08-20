@@ -1,16 +1,16 @@
 .addplace__close {
-  min-width: 40.7px;
-  min-height: 40.7px;
+  width: 40.7px;
+  height: 40.7px;
   border: 0;
   padding: 0;
   background-color: transparent;
   background-image: url(../../../images/CloseIcon.png);
   background-repeat: no-repeat;
   background-position: center;
-  position: relative;
-  bottom: 190px;
-  left: 0;
   cursor: pointer;
+  position: absolute;
+  top:-40.7px;
+  right: -40.7px;
 }
 
 .addplace__close:hover {

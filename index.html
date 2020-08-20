@@ -14,6 +14,7 @@
     <!--<section class="popup popup_opened">-->
     <section class="popup">
       <form class="popup__container" name="userprofile">
+        <button class="popup__close" type="button"></button>
         <fieldset class="popup__profile">
           <label class="popup__label">Редактировать профиль</label>
           <input type="text" class="popup__input popup__input_type_name" name="fullname">
@@ -22,7 +23,6 @@
         </fieldset>
         <button class="popup__button" type="submit">Сохранить</button>
       </form>
-      <button class="popup__close" type="button"></button>
     </section>
     <section class="profile">
       <img class="avatar" src="./images/image1.jpg" alt="Ж.И. Кусто">
@@ -37,6 +37,7 @@
     </section>
     <section class="addplace">
       <form class="addplace__container" name="newplace">
+        <button class="addplace__close" type="button"></button>
         <fieldset class="addplace__profile">
           <label class="addplace__label">Новое место</label>
           <input type="text" class="addplace__input addplace__input_type_name" name="placename" placeholder="Название" required>
@@ -45,12 +46,12 @@
         </fieldset>
         <button class="addplace__button" type="submit">Сохранить</button>
       </form>
-      <button class="addplace__close" type="button"></button>
+
     </section>
     <section class="popup-place">
       <div class="popup-place__container">
         <button class="popup-place__close" type="button"></button>
-        <img src="" alt="Изображение места" class="popup-place__image">
+        <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Изображение места" class="popup-place__image">
         <p class="popup-place__title"></p>
       </div>
     </section>
@@ -62,9 +63,9 @@
   <template class="template">
     <div class="cards">
       <button type="button" class="cards__button">
-        <img class="cards__image" src="" alt="Изображение места">
+        <img class="cards__image" alt="Изображение места">
       </button>
-      <button type="button"class="cards__delete-icon"></button>
+      <button type="button" class="cards__delete-icon"></button>
       <div class="cards__item-rectangle">
         <h3 class="cards__item-subtitle"></h3>
         <button type="button" class="cards__item-button">

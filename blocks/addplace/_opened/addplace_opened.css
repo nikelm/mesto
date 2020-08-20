@@ -1,4 +1,6 @@
 .addplace_opened {
-  display: flex;
-  z-index: 10;
+  /*display: flex;*/
+
+  visibility: visible;
+  opacity: 1;
 }

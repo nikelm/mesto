@@ -1,7 +1,6 @@
 .addplace__label {
   display: block;
-  margin-top: 34px;
-  margin-bottom: 54px;
+  margin: 34px auto 54px auto;
   font-family: 'Inter', 'Arial', sans-serif;
   font-style: normal;
   font-weight: 900;
@@ -13,7 +12,7 @@
 @media screen and (min-width: 320px) and (max-width: 882px) {
   .addplace__label {
     font-size: 18px;
-    line-height: 24px;
-    max-width: 260px;
+    line-height: 22px;
+    max-width: 185px;
   }
 }
