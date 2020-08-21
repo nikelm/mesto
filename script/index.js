@@ -163,7 +163,6 @@ function formPlaceSubmitHandler (evt) {
   cardsContainer.prepend(addCards({name: `${nameInputPlace.value}`, link: `${linkInputPlace.value}`}));
 
   closeProfilePopup(addPlace);
-
 }
 
 formElementPlace.addEventListener('submit', formPlaceSubmitHandler);
