@@ -129,6 +129,7 @@ function closeProfilePopup(popup){
 
 // Еще вариант закрытия
 //btnClose.addEventListener('click', () => closeProfilePopup(popupProfile));
+
 btnClose.addEventListener('click', function () {
   closeProfilePopup(popupProfile);
 });
