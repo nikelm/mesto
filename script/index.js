@@ -46,16 +46,18 @@ const cardsContainer = document.querySelector('.elements'); //Куда копи�
 let imageSource = document.querySelector('.popup-place__image');
 let imageName = document.querySelector('.popup-place__title');
 const openPlace = document.querySelector('.popup-place');
+const closeImage = document.querySelector('.popup-place__close');
+
 
 // Добавляем карточки на страницу
 const addCards = (card) => {
 
   const cardsTemplate = document.querySelector('.template').content.cloneNode(true); //Что копируем
 
-  cardsTemplate.querySelector('.cards__item-subtitle').textContent = card.name; //
+  cardsTemplate.querySelector('.cards__item-subtitle').textContent = card.name;
   cardsTemplate.querySelector('.cards__image').src = card.link;
 
-  let source = (cardsTemplate.querySelector('.cards__image'));
+  let source = cardsTemplate.querySelector('.cards__image');
   let namePlace = cardsTemplate.querySelector('.cards__item-subtitle');
 
   const like = cardsTemplate.querySelector('.cards__like');
@@ -95,7 +97,6 @@ const addCards = (card) => {
 
   });
 
-  const closeImage = document.querySelector('.popup-place__close');
 
   closeImage.addEventListener('click', function(evt) {
     evt.preventDefault();
@@ -104,16 +105,21 @@ const addCards = (card) => {
 
   });
 
-
-
-  cardsContainer.append(cardsTemplate);
-
+  //cardsContainer.append(cardsTemplate);
+  return cardsTemplate;
 }
 
+for (let i = 0; i < initialCards.length; i++) {
+
+  cardsContainer.append(addCards(initialCards[i]));
+}
+
+
+/*
 initialCards.forEach(addCards);
-
+*/
 openPlace.classList.remove('popup-place_opened');
-
+/*
 //Добавляем вручную карточки на страницу
 const addCard = (card) => {
 
@@ -171,7 +177,7 @@ const addCard = (card) => {
 
   cardsContainer.prepend(cardsTemplate);
 }
-
+*/
 function openPopup() {
   popup.classList.add('popup_opened');
   nameInput.value = profileName.textContent;
@@ -218,14 +224,12 @@ btnClosePlace.addEventListener('click', closeAddPlace);
 function formPlaceSubmitHandler (evt) {
   evt.preventDefault();
 
-  let newCard =[];
+  //Проблема не с реализацией решения, а с логикой его поиска... Одна функция возвращает карточку, другая рисует её на страницу. Блин, это же, так оказывается просто!
 
-  newCard.unshift({name: `${nameInputPlace.value}`, link: `${linkInputPlace.value}`});
-
-  newCard.forEach(addCard);
+  cardsContainer.prepend(addCards({name: `${nameInputPlace.value}`, link: `${linkInputPlace.value}`}));
 
   closeAddPlace();
-  newCard.length = 0;
+
 }
 
 formElementPlace.addEventListener('submit', formPlaceSubmitHandler);
