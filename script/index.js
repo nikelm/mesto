@@ -88,7 +88,7 @@ const addCards = (card) => {
       imageSource.src = source.src;
       imageName.textContent = namePlace.textContent;
 
-      openProfilePopup(openPlace);
+      openPopup(openPlace);
 
   });
 
@@ -96,7 +96,7 @@ const addCards = (card) => {
   closeImage.addEventListener('click', function(evt) {
     evt.preventDefault();
 
-    closeProfilePopup(openPlace);
+    closePopup(openPlace);
 
   });
 
@@ -108,29 +108,25 @@ for (let i = 0; i < initialCards.length; i++) {
   cardsContainer.append(addCards(initialCards[i]));
 }
 
-
-function openProfilePopup(popup) {
+function openPopup(popup) {
   popup.classList.add('popup_opened'); //Не забыть правильно импортировать в index.css
-
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileDescription.textContent;
-  formElementPlace.reset();
-
 }
 
 btnEdit.addEventListener('click', function () {
-  openProfilePopup(popupProfile);
+  openPopup(popupProfile);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileDescription.textContent;
 });
 
 
-function closeProfilePopup(popup){
+function closePopup(popup){
   popup.classList.remove('popup_opened');
 }
 
 // Еще вариант закрытия
 //btnClose.addEventListener('click', () => closeProfilePopup(popupProfile));
 btnClose.addEventListener('click', function () {
-  closeProfilePopup(popupProfile);
+  closePopup(popupProfile);
 });
 
 function formSubmitHandler (evt) {
@@ -139,19 +135,20 @@ function formSubmitHandler (evt) {
   profileName.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
 
-  closeProfilePopup(popupProfile);
+  closePopup(popupProfile);
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
 
 //Окно "Новое место"
 btnAddPlace.addEventListener('click', function () {
-  openProfilePopup(addPlace);
+  openPopup(addPlace);
+  formElementPlace.reset();
 });
 
 //btnClosePlace.addEventListener('click', () => closeProfilePopup(addPlace));
 btnClosePlace.addEventListener('click',function () {
-  closeProfilePopup(addPlace);
+  closePopup(addPlace);
 });
 
 
@@ -162,7 +159,7 @@ function formPlaceSubmitHandler (evt) {
 
   cardsContainer.prepend(addCards({name: `${nameInputPlace.value}`, link: `${linkInputPlace.value}`}));
 
-  closeProfilePopup(addPlace);
+  closePopup(addPlace);
 
 }
 
