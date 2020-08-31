@@ -3,9 +3,11 @@ const btnEdit = document.querySelector('.profile__link');
 const btnClose = document.querySelector('.popup__close');
 const profileName = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__paragraph');
-const formElement = document.querySelector('.popup__container');
+const formElement = document.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_description');
+
+console.log(document.querySelectorAll('popup__error_visible'));
 
 const addPlace = document.querySelector('.addplace');
 const btnAddPlace = document.querySelector('.profile__add');
@@ -108,8 +110,32 @@ for (let i = 0; i < initialCards.length; i++) {
   cardsContainer.append(addCards(initialCards[i]));
 }
 
+
+function keyHandler (evt) {
+  const popupOpen = document.querySelector('.popup_opened');
+
+  if (evt.key === 'Escape') {
+    closePopup(popupOpen);
+  }
+}
+
+function clearPopup() {
+  const inputAll = document.querySelectorAll('.popup__input');
+  const spanAll = document.querySelectorAll('popup__error_visible');
+  console.log(spanAll);
+  inputAll.forEach((inptElement) => {
+    inptElement.classList.remove('popup__input_type_error');
+  });
+  spanAll.forEach((inptElement) => {
+    inptElement.classList.remove('popup__error_visible');
+  });
+}
+
 function openPopup(popup) {
-  popup.classList.add('popup_opened'); //Не забыть правильно импортировать в index.css
+  document.addEventListener('keydown', keyHandler);
+
+  popup.classList.add('popup_opened');
+
 }
 
 btnEdit.addEventListener('click', function () {
@@ -120,7 +146,9 @@ btnEdit.addEventListener('click', function () {
 
 
 function closePopup(popup){
+  document.removeEventListener('keydown', keyHandler);
   popup.classList.remove('popup_opened');
+  clearPopup();
 }
 
 // Еще вариант закрытия
@@ -154,8 +182,6 @@ btnClosePlace.addEventListener('click',function () {
 
 function formPlaceSubmitHandler (evt) {
   evt.preventDefault();
-
-  //Проблема не с реализацией решения, а с логикой его поиска... Одна функция возвращает карточку, другая рисует её на страницу. Блин, это же, так оказывается просто!
 
   cardsContainer.prepend(addCards({name: `${nameInputPlace.value}`, link: `${linkInputPlace.value}`}));
 
