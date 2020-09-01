@@ -13,7 +13,7 @@ const btnClosePlace = document.querySelector('.addplace__close');
 const formElementPlace = document.querySelector('.addplace__container');
 const nameInputPlace = document.querySelector('.addplace__input_type_name');
 const linkInputPlace = document.querySelector('.addplace__input_type_link');
-const popupButton = document.querySelector('.popup__button');
+const popupButton = document.querySelector('.addplace__button');
 
 
 const initialCards = [
@@ -194,6 +194,7 @@ formElement.addEventListener('submit', formSubmitHandler);
 //Окно "Новое место"
 btnAddPlace.addEventListener('click', function () {
   popupButton.classList.add('popup__button_disabled');
+
   openPopup(addPlace);
   formElementPlace.reset();
 
