@@ -3,9 +3,11 @@ const btnEdit = document.querySelector('.profile__link');
 const btnClose = document.querySelector('.popup__close');
 const profileName = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__paragraph');
-const formElement = document.querySelector('.popup__container');
+const formElement = document.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_description');
+
+console.log(document.querySelectorAll('popup__error_visible'));
 
 const addPlace = document.querySelector('.addplace');
 const btnAddPlace = document.querySelector('.profile__add');
@@ -88,7 +90,7 @@ const addCards = (card) => {
       imageSource.src = source.src;
       imageName.textContent = namePlace.textContent;
 
-      openProfilePopup(openPlace);
+      openPopup(openPlace);
 
   });
 
@@ -96,7 +98,7 @@ const addCards = (card) => {
   closeImage.addEventListener('click', function(evt) {
     evt.preventDefault();
 
-    closeProfilePopup(openPlace);
+    closePopup(openPlace);
 
   });
 
@@ -109,29 +111,51 @@ for (let i = 0; i < initialCards.length; i++) {
 }
 
 
-function openProfilePopup(popup) {
-  popup.classList.add('popup_opened'); //Не забыть правильно импортировать в index.css
+function keyHandler (evt) {
+  const popupOpen = document.querySelector('.popup_opened');
 
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileDescription.textContent;
-  formElementPlace.reset();
+  if (evt.key === 'Escape') {
+    closePopup(popupOpen);
+  }
+}
+
+function clearPopup() {
+  const inputAll = document.querySelectorAll('.popup__input');
+  const spanAll = document.querySelectorAll('popup__error_visible');
+  console.log(spanAll);
+  inputAll.forEach((inptElement) => {
+    inptElement.classList.remove('popup__input_type_error');
+  });
+  spanAll.forEach((inptElement) => {
+    inptElement.classList.remove('popup__error_visible');
+  });
+}
+
+function openPopup(popup) {
+  document.addEventListener('keydown', keyHandler);
+
+  popup.classList.add('popup_opened');
 
 }
 
 btnEdit.addEventListener('click', function () {
-  openProfilePopup(popupProfile);
+  openPopup(popupProfile);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileDescription.textContent;
 });
 
 
-function closeProfilePopup(popup){
+function closePopup(popup){
+  document.removeEventListener('keydown', keyHandler);
   popup.classList.remove('popup_opened');
+  clearPopup();
 }
 
 // Еще вариант закрытия
 //btnClose.addEventListener('click', () => closeProfilePopup(popupProfile));
 
 btnClose.addEventListener('click', function () {
-  closeProfilePopup(popupProfile);
+  closePopup(popupProfile);
 });
 
 function formSubmitHandler (evt) {
@@ -140,30 +164,34 @@ function formSubmitHandler (evt) {
   profileName.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
 
-  closeProfilePopup(popupProfile);
+  closePopup(popupProfile);
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
 
 //Окно "Новое место"
 btnAddPlace.addEventListener('click', function () {
-  openProfilePopup(addPlace);
+  openPopup(addPlace);
+  formElementPlace.reset();
 });
 
 //btnClosePlace.addEventListener('click', () => closeProfilePopup(addPlace));
 btnClosePlace.addEventListener('click',function () {
-  closeProfilePopup(addPlace);
+  closePopup(addPlace);
 });
 
 
 function formPlaceSubmitHandler (evt) {
   evt.preventDefault();
 
-  //Проблема не с реализацией решения, а с логикой его поиска... Одна функция возвращает карточку, другая рисует её на страницу. Блин, это же, так оказывается просто!
-
   cardsContainer.prepend(addCards({name: `${nameInputPlace.value}`, link: `${linkInputPlace.value}`}));
 
+<<<<<<< HEAD
   closeProfilePopup(addPlace);
+=======
+  closePopup(addPlace);
+
+>>>>>>> b671b4a5345738981f8f9e5a62dcd0b0105d40ff
 }
 
 formElementPlace.addEventListener('submit', formPlaceSubmitHandler);
