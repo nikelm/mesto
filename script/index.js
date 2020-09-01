@@ -13,6 +13,8 @@ const btnClosePlace = document.querySelector('.addplace__close');
 const formElementPlace = document.querySelector('.addplace__container');
 const nameInputPlace = document.querySelector('.addplace__input_type_name');
 const linkInputPlace = document.querySelector('.addplace__input_type_link');
+const popupButton = document.querySelector('.popup__button');
+
 
 const initialCards = [
   {
@@ -117,28 +119,48 @@ function keyHandler (evt) {
   }
 }
 
+function overlayClose(evt) {
+  const popupOpen = document.querySelector('.popup_opened');
+
+    if(evt.target.className === ('.popup_opened')){
+      console.log(test);
+      closePopup(popupOpen);
+    }
+}
+
+
+
 function clearPopup() {
   const inputAll = document.querySelectorAll('.popup__input');
   const spanAll = document.querySelectorAll('.popup__error');
+  const buttonAll = document.querySelectorAll('.popup__button');
 
   inputAll.forEach((inptElement) => {
     inptElement.classList.remove('popup__input_type_error');
   });
+
   spanAll.forEach((inptElement) => {
     inptElement.textContent = '';
     inptElement.classList.remove('popup__error_visible');
+  });
+
+  buttonAll.forEach((inptElement) => {
+    inptElement.classList.remove('popup__button_disabled');
   });
 }
 
 function openPopup(popup) {
   document.addEventListener('keydown', keyHandler);
-
+  document.addEventListener('mousedown', overlayClose);
   popup.classList.add('popup_opened');
+
 
 }
 
 btnEdit.addEventListener('click', function () {
+
   openPopup(popupProfile);
+
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
 });
@@ -146,6 +168,7 @@ btnEdit.addEventListener('click', function () {
 
 function closePopup(popup){
   document.removeEventListener('keydown', keyHandler);
+
   popup.classList.remove('popup_opened');
   clearPopup();
 }
@@ -170,8 +193,10 @@ formElement.addEventListener('submit', formSubmitHandler);
 
 //Окно "Новое место"
 btnAddPlace.addEventListener('click', function () {
+  popupButton.classList.add('popup__button_disabled');
   openPopup(addPlace);
   formElementPlace.reset();
+
 });
 
 //btnClosePlace.addEventListener('click', () => closeProfilePopup(addPlace));

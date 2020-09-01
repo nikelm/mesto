@@ -1,4 +1,3 @@
-
 const showInputError = (formElement, inputElement, inputErrorClass, errorClass) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   let minNameLength;
@@ -61,7 +60,7 @@ const setEventListeners = (formElement, {inputSelector, submitButtonSelector, in
   const getInputList = Array.from(formElement.querySelectorAll(inputSelector));
   const buttonElement = formElement.querySelector(submitButtonSelector);
 
-  toggleButtonState(getInputList, buttonElement, inactiveButtonClass);
+  //toggleButtonState(getInputList, buttonElement, inactiveButtonClass);
 
   getInputList.forEach((inputElement) => {
 
@@ -92,4 +91,3 @@ enableValidation({
   inputErrorClass: 'popup__input_type_error',     //класс невалидного инпута
   errorClass: 'popup__error_visible'              //невалидный спан с текстом ошибки
 });
-
