@@ -7,8 +7,6 @@ const formElement = document.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_description');
 
-console.log(document.querySelectorAll('popup__error_visible'));
-
 const addPlace = document.querySelector('.addplace');
 const btnAddPlace = document.querySelector('.profile__add');
 const btnClosePlace = document.querySelector('.addplace__close');
@@ -121,12 +119,13 @@ function keyHandler (evt) {
 
 function clearPopup() {
   const inputAll = document.querySelectorAll('.popup__input');
-  const spanAll = document.querySelectorAll('popup__error_visible');
-  console.log(spanAll);
+  const spanAll = document.querySelectorAll('.popup__error');
+
   inputAll.forEach((inptElement) => {
     inptElement.classList.remove('popup__input_type_error');
   });
   spanAll.forEach((inptElement) => {
+    inptElement.textContent = '';
     inptElement.classList.remove('popup__error_visible');
   });
 }
@@ -186,12 +185,8 @@ function formPlaceSubmitHandler (evt) {
 
   cardsContainer.prepend(addCards({name: `${nameInputPlace.value}`, link: `${linkInputPlace.value}`}));
 
-<<<<<<< HEAD
-  closeProfilePopup(addPlace);
-=======
   closePopup(addPlace);
 
->>>>>>> b671b4a5345738981f8f9e5a62dcd0b0105d40ff
 }
 
 formElementPlace.addEventListener('submit', formPlaceSubmitHandler);
