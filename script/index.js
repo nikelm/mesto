@@ -143,7 +143,7 @@ function clearPopup() {
 }
 
 function openPopup(popup) {
-
+  popup.addEventListener('mousedown', popupClose);
   document.addEventListener('keydown', keyHandler);
 
   popup.classList.add('popup_opened');
@@ -178,13 +178,14 @@ function popupClose(evt) {
   if (evt.target !== evt.currentTarget) {
     return
   } else {
+    clearPopup();
     popupProfile.classList.remove('popup_opened');
     addPlace.classList.remove('popup_opened');
   }
 }
 
-popupProfile.addEventListener('click', popupClose);
-addPlace.addEventListener('click', popupClose);
+//popupProfile.addEventListener('mousedown', popupClose);
+//addPlace.addEventListener('mousedown', popupClose);
 
 
 function formSubmitHandler (evt) {
