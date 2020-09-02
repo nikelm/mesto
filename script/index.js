@@ -224,5 +224,3 @@ formElementPlace.addEventListener('submit', formPlaceSubmitHandler);
 
 
 
-
-
