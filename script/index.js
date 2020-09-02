@@ -7,14 +7,15 @@ const formElement = document.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_description');
 
-const addPlace = document.querySelector('.addplace');
+const addPlace = document.querySelector('.popup_new');
 const btnAddPlace = document.querySelector('.profile__add');
-const btnClosePlace = document.querySelector('.addplace__close');
-const formElementPlace = document.querySelector('.addplace__container');
-const nameInputPlace = document.querySelector('.addplace__input_type_name');
-const linkInputPlace = document.querySelector('.addplace__input_type_link');
-const popupButton = document.querySelector('.addplace__button');
-
+const btnClosePlace = document.querySelector('.popup__close_new');
+const formElementPlace = document.querySelector('.popup__form_new');
+const nameInputPlace = document.querySelector('.popup__input-new_type_name');
+const linkInputPlace = document.querySelector('.popup__input-new_type_link');
+const popupButton = document.querySelector('.popup__button-save');
+const page = document.querySelector('.body');
+const popupOpened = document.querySelector('.popup_opened');
 
 const initialCards = [
   {
@@ -120,7 +121,7 @@ function keyHandler (evt) {
   }
 }
 
-
+//Очистка формы
 
 function clearPopup() {
   const inputAll = document.querySelectorAll('.popup__input');
@@ -172,6 +173,7 @@ btnClose.addEventListener('click', function () {
   closePopup(popupProfile);
 });
 
+
 function popupClose(evt) {
   if (evt.target !== evt.currentTarget) {
     return
@@ -183,6 +185,7 @@ function popupClose(evt) {
 
 popupProfile.addEventListener('click', popupClose);
 addPlace.addEventListener('click', popupClose);
+
 
 function formSubmitHandler (evt) {
   evt.preventDefault();

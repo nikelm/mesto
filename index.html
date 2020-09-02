@@ -37,18 +37,18 @@
       </div>
       <button class="profile__add" type="button"></button>
     </section>
-    <section class="addplace popup">
-      <form class="addplace__container popup__form" name="newplace" novalidate>
-        <button class="addplace__close popup__close" type="button"></button>
-        <fieldset class="addplace__profile popup__profile">
-          <label class="addplace__label popup__label">Новое место</label>
-          <input id="place-input" type="text" class="popup__input addplace__input addplace__input_type_name popup__input_type_name" name="placename" placeholder="Название" required minlength="1" maxlength="30">
+    <section class="popup popup_new">
+      <form class="popup__form popup__form_new" name="newplace" novalidate>
+        <button class="popup__close popup__close_new" type="button"></button>
+        <fieldset class="popup__profile popup__profile_new">
+          <label class="popup__label popup__label_new">Новое место</label>
+          <input id="place-input" type="text" class="popup__input popup__input-new_type_name popup__input_type_name" name="placename" placeholder="Название" required minlength="1" maxlength="30">
           <span id="place-input-error" class="popup__error"></span>
           <label></label>
-          <input id="url-input" type="url" class="popup__input addplace__input addplace__input_type_link" name="placelink" placeholder="Ссылка на картинку" required>
+          <input id="url-input" type="url" class="popup__input popup__input-new_type_link" name="placelink" placeholder="Ссылка на картинку" required>
           <span id="url-input-error" class="popup__error"></span>
         </fieldset>
-        <button class="popup__button addplace__button" type="submit">Сохранить</button>
+        <button class="popup__button popup__button-save" type="submit">Сохранить</button>
       </form>
     </section>
     <section class="popup-place">
