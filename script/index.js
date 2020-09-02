@@ -111,21 +111,13 @@ for (let i = 0; i < initialCards.length; i++) {
 }
 
 
+
 function keyHandler (evt) {
   const popupOpen = document.querySelector('.popup_opened');
 
   if (evt.key === 'Escape') {
     closePopup(popupOpen);
   }
-}
-
-function overlayClose(evt) {
-  const popupOpen = document.querySelector('.popup_opened');
-
-    if(evt.target.className === ('.popup_opened')){
-      console.log(test);
-      closePopup(popupOpen);
-    }
 }
 
 
@@ -150,10 +142,10 @@ function clearPopup() {
 }
 
 function openPopup(popup) {
-  document.addEventListener('keydown', keyHandler);
-  document.addEventListener('mousedown', overlayClose);
-  popup.classList.add('popup_opened');
 
+  document.addEventListener('keydown', keyHandler);
+
+  popup.classList.add('popup_opened');
 
 }
 
@@ -179,6 +171,18 @@ function closePopup(popup){
 btnClose.addEventListener('click', function () {
   closePopup(popupProfile);
 });
+
+function popupClose(evt) {
+  if (evt.target !== evt.currentTarget) {
+    return
+  } else {
+    popupProfile.classList.remove('popup_opened');
+    addPlace.classList.remove('popup_opened');
+  }
+}
+
+popupProfile.addEventListener('click', popupClose);
+addPlace.addEventListener('click', popupClose);
 
 function formSubmitHandler (evt) {
   evt.preventDefault();
