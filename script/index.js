@@ -184,9 +184,6 @@ function popupClose(evt) {
   }
 }
 
-//popupProfile.addEventListener('mousedown', popupClose);
-//addPlace.addEventListener('mousedown', popupClose);
-
 
 function formSubmitHandler (evt) {
   evt.preventDefault();
