@@ -121,11 +121,7 @@ function keyHandler (evt) {
 
 
 function openPopup(popup) {
-<<<<<<< HEAD
-  popup.addEventListener('mousedown', popupClose);
-=======
   popup.addEventListener('click', popupClose);
->>>>>>> feature/feature-form-validation
   document.addEventListener('keydown', keyHandler);
 
   clearPopup(popup);
