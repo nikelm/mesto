@@ -1,3 +1,28 @@
+//Очистка формы
+
+function clearPopup(popup) {
+
+  const inputPopup = popup.querySelectorAll('.popup__input');
+  const spanPopup = popup.querySelectorAll('.popup__error');
+  const buttonPopup = popup.querySelectorAll('.popup__button');
+
+  inputPopup.forEach((inptElement) => {
+    inptElement.classList.remove('popup__input_type_error');
+  });
+
+  spanPopup.forEach((inptElement) => {
+    inptElement.textContent = '';
+    inptElement.classList.remove('popup__error_visible');
+  });
+
+  buttonPopup.forEach((inptElement) => {
+    if (inputPopup.value !== '') {
+    inptElement.classList.remove('popup__button_disabled');
+    }
+  });
+}
+
+
 const showInputError = (formElement, inputElement, inputErrorClass, errorClass) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   let minNameLength;
@@ -41,8 +66,10 @@ const hasInvalidInput = (getInputList) => {
 const toggleButtonState = (getInputList, buttonElement, inactiveButtonClass) => {
   if (hasInvalidInput(getInputList)) {
     buttonElement.classList.add(inactiveButtonClass);
+    buttonElement.setAttribute('disabled', 'disabled');
   } else {
     buttonElement.classList.remove(inactiveButtonClass);
+    buttonElement.removeAttribute('disabled');
   }
 }
 
