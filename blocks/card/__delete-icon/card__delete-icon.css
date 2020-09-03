@@ -1,4 +1,4 @@
-.cards__delete-icon {
+.card__delete-icon {
   padding: 0;
   border: none;
   width: 18px;
@@ -13,6 +13,6 @@
   right: 15px;
 }
 
-.cards__delete-icon:hover {
+.card__delete-icon:hover {
   opacity: 0.6;
 }

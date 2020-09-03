@@ -1,0 +1,16 @@
+@import url(./__button/card__button.css);
+@import url(./__image/card__image.css);
+@import url(./__delete-icon/card__delete-icon.css);
+@import url(./__item-button/card__item-button.css);
+@import url(./__item-rectangle/card__item-rectangle.css);
+@import url(./__item-subtitle/card__item-subtitle.css);
+@import url(./__like/_active/card__like_active.css);
+
+.card {
+  max-width: 282px;
+  max-height: 361px;
+  display: flex;
+  flex-direction: column;
+  background-image: url(../../images/Rectangle.png);
+  position: relative;
+}

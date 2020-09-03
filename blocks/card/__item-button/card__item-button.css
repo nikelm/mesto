@@ -1,4 +1,4 @@
-.cards__item-button {
+.card__item-button {
   cursor: pointer;
   border: none;
   padding: 0;
@@ -11,10 +11,10 @@
 
 }
 
-.cards__item-button:hover {
+.card__item-button:hover {
 opacity: 0.6;
 }
 
-.cards__item-button:focus {
+.card__item-button:focus {
   outline: none;
 }

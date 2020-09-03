@@ -11,21 +11,6 @@
     <img class="logo" src="./images/logo_header.svg" alt="Логотип">
   </header>
   <main class="main">
-    <!--<section class="popup popup_opened">-->
-    <section class="popup">
-      <form class="popup__form" name="userprofile" novalidate>
-        <button class="popup__close" type="button"></button>
-        <fieldset class="popup__profile">
-          <label class="popup__label">Редактировать профиль</label>
-          <input id="name-input" type="text" class="popup__input popup__input_type_name" name="fullname" placeholder="Имя" required minlength="2" maxlength="40">
-          <span id="name-input-error" class="popup__error"></span>
-          <label></label>
-          <input id="job-input" type="text" class="popup__input popup__input_type_description" name="job" placeholder="О себе" required minlength="2" maxlength="200">
-          <span id="job-input-error" class="popup__error"></span>
-        </fieldset>
-        <button class="popup__button" type="submit">Сохранить</button>
-      </form>
-    </section>
     <section class="profile">
       <img class="avatar" src="./images/image1.jpg" alt="Ж.И. Кусто">
       <div class="profile__info">
@@ -36,20 +21,6 @@
         <p class="profile__paragraph">Исследователь океана</p>
       </div>
       <button class="profile__add" type="button"></button>
-    </section>
-    <section class="popup popup_new">
-      <form class="popup__form popup__form_new" name="newplace" novalidate>
-        <button class="popup__close popup__close_new" type="button"></button>
-        <fieldset class="popup__profile popup__profile_new">
-          <label class="popup__label popup__label_new">Новое место</label>
-          <input id="place-input" type="text" class="popup__input popup__input-new_type_name popup__input_type_name" name="placename" placeholder="Название" required minlength="1" maxlength="30">
-          <span id="place-input-error" class="popup__error"></span>
-          <label></label>
-          <input id="url-input" type="url" class="popup__input popup__input-new_type_link" name="placelink" placeholder="Ссылка на картинку" required>
-          <span id="url-input-error" class="popup__error"></span>
-        </fieldset>
-        <button class="popup__button popup__button-save" type="submit">Сохранить</button>
-      </form>
     </section>
     <section class="popup-place">
       <div class="popup-place__container">
@@ -64,21 +35,49 @@
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
   <template class="template">
-    <div class="cards">
-      <button type="button" class="cards__button">
-        <img class="cards__image" alt="Изображение места">
+    <div class="card">
+      <button type="button" class="card__button">
+        <img class="card__image" alt="Изображение места">
       </button>
-      <button type="button" class="cards__delete-icon"></button>
-      <div class="cards__item-rectangle">
-        <h3 class="cards__item-subtitle"></h3>
-        <button type="button" class="cards__item-button">
-          <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg" class="cards__like">
+      <button type="button" class="card__delete-icon"></button>
+      <div class="card__item-rectangle">
+        <h3 class="card__item-subtitle"></h3>
+        <button type="button" class="card__item-button">
+          <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg" class="card__like">
             <path d="M18.8005 1.95849L18.8023 1.96024C20.7437 3.88233 20.7462 7.03905 18.8005 8.98466L10.361 17.4238L1.94628 9.00951C1.94569 9.00892 1.94511 9.00832 1.94453 9.00772C1.0188 8.06185 0.5 6.81051 0.5 5.48217C0.5 4.14855 1.00122 2.89987 1.94265 1.95849L1.94266 1.95849L1.94441 1.95672C3.86629 0.0157068 7.02186 0.0131363 8.96748 1.97793L8.96922 1.97967L10.0074 3.01784L10.3646 3.37496L10.7181 3.01425L11.7545 1.95673C13.6994 0.0138381 16.8563 0.014425 18.8005 1.95849Z" stroke="black"/>
           </svg>
         </button>
       </div>
     </div>
     </template>
+    <section class="popup popup_user">
+      <form class="popup__form" name="userprofile" novalidate>
+        <button class="popup__close" type="button"></button>
+        <fieldset class="popup__profile">
+          <label class="popup__label">Редактировать профиль</label>
+          <input id="name-input" type="text" class="popup__input popup__input_type_name" name="fullname" placeholder="Имя" required minlength="2" maxlength="40">
+          <span id="name-input-error" class="popup__error"></span>
+          <label></label>
+          <input id="job-input" type="text" class="popup__input popup__input_type_description" name="job" placeholder="О себе" required minlength="2" maxlength="200">
+          <span id="job-input-error" class="popup__error"></span>
+        </fieldset>
+        <button class="popup__button" type="submit">Сохранить</button>
+      </form>
+    </section>
+    <section class="popup popup_new">
+      <form class="popup__form popup__form_new" name="newplace" novalidate>
+        <button class="popup__close popup__close_new" type="button"></button>
+        <fieldset class="popup__profile popup__profile_new">
+          <label class="popup__label popup__label_new">Новое место</label>
+          <input id="place-input" type="text" class="popup__input popup__input-new_type_name popup__input_type_name" name="placename" placeholder="Название" required minlength="1" maxlength="30">
+          <span id="place-input-error" class="popup__error"></span>
+          <label></label>
+          <input id="url-input" type="url" class="popup__input popup__input-new_type_link" name="placelink" placeholder="Ссылка на картинку" required>
+          <span id="url-input-error" class="popup__error"></span>
+        </fieldset>
+        <button class="popup__button popup__button-save" type="submit" disabled>Сохранить</button>
+      </form>
+    </section>
   <script src="./script/validate.js"></script>
   <script src="./script/index.js"></script>
 </body>

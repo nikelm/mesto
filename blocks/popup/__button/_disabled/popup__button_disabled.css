@@ -2,8 +2,9 @@
   color:  #000000;
   background: #E5E5E5;;
   pointer-events: none;
+/*
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
+  user-select: none;*/
 }
