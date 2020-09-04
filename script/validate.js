@@ -22,12 +22,16 @@ function clearPopup(popup) {
   });
 }
 
+/* Не то, чтобы не принял во внимание, просто тут я надолго застрял, столько трудов... Жалко удалять было в общем, если можно не удалять).
+Переделал по варианту: "добавить их в конфигурационный объект, а затем достать оттуда." */
 
-const showInputError = (formElement, inputElement, inputErrorClass, errorClass) => {
+const showInputError = (formElement, inputElement, inputErrorClass, errorClass, inputName, inputJob) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+
+
   let minNameLength;
 
-  if (inputElement.name === 'fullname' || inputElement.name === 'job') {
+  if (inputElement.name === inputName || inputElement.name === inputJob) {
     minNameLength = 2;
   } else {
     minNameLength = 1;
@@ -66,23 +70,23 @@ const hasInvalidInput = (getInputList) => {
 const toggleButtonState = (getInputList, buttonElement, inactiveButtonClass) => {
   if (hasInvalidInput(getInputList)) {
     buttonElement.classList.add(inactiveButtonClass);
-    buttonElement.setAttribute('disabled', 'disabled');
+    buttonElement.disabled = true;
   } else {
     buttonElement.classList.remove(inactiveButtonClass);
-    buttonElement.removeAttribute('disabled');
+    buttonElement.disabled = false;
   }
 }
 
-const checkInputValidity = (formElement, inputElement, inputErrorClass, errorClass) => {
+const checkInputValidity = (formElement, inputElement, inputErrorClass, errorClass, inputName, inputJob) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputErrorClass, errorClass);
+    showInputError(formElement, inputElement, inputErrorClass, errorClass, inputName, inputJob);
   } else {
     hideInputError(formElement, inputElement, inputErrorClass, errorClass);
   }
 };
 
 
-const setEventListeners = (formElement, {inputSelector, submitButtonSelector, inputErrorClass, errorClass, inactiveButtonClass}, ...rest) => {
+const setEventListeners = (formElement, {inputSelector, submitButtonSelector, inputErrorClass, errorClass, inactiveButtonClass, inputName, inputJob}, ...rest) => {
 
   const getInputList = Array.from(formElement.querySelectorAll(inputSelector));
   const buttonElement = formElement.querySelector(submitButtonSelector);
@@ -93,7 +97,7 @@ const setEventListeners = (formElement, {inputSelector, submitButtonSelector, in
 
       inputElement.addEventListener('input', () => {
        /* isValid(formElement, inputElement, inputErrorClass, errorClass);*/
-        checkInputValidity(formElement, inputElement, inputErrorClass, errorClass);
+        checkInputValidity(formElement, inputElement, inputErrorClass, errorClass, inputName, inputJob);
         toggleButtonState(getInputList, buttonElement, inactiveButtonClass);
       });
   });
@@ -116,5 +120,7 @@ enableValidation({
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',     //класс невалидного инпута
-  errorClass: 'popup__error_visible'              //невалидный спан с текстом ошибки
+  errorClass: 'popup__error_visible',              //невалидный спан с текстом ошибки
+  inputName: 'fullname',
+  inputJob: 'job'
 });

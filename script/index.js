@@ -7,14 +7,13 @@ const formElement = document.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_description');
 
-const addPlace = document.querySelector('.popup_new');
+const popupNewPlace = document.querySelector('.popup_new');
 const btnAddPlace = document.querySelector('.profile__add');
 const btnClosePlace = document.querySelector('.popup__close_new');
 const formElementPlace = document.querySelector('.popup__form_new');
 const nameInputPlace = document.querySelector('.popup__input-new_type_name');
 const linkInputPlace = document.querySelector('.popup__input-new_type_link');
 const popupButton = document.querySelector('.popup__button-save');
-const page = document.querySelector('.body');
 
 
 const initialCards = [
@@ -48,7 +47,7 @@ const initialCards = [
 const cardsContainer = document.querySelector('.elements'); //Куда копируем
 const imageSource = document.querySelector('.popup-place__image');
 const imageName = document.querySelector('.popup-place__title');
-const openPlace = document.querySelector('.popup-place');
+const popupPlace = document.querySelector('.popup-place');
 const closeImage = document.querySelector('.popup-place__close');
 
 
@@ -91,7 +90,7 @@ const addCards = (card) => {
       imageSource.src = source.src;
       imageName.textContent = namePlace.textContent;
 
-      openPopup(openPlace);
+      openPopup(popupPlace);
 
   });
 
@@ -101,7 +100,7 @@ const addCards = (card) => {
 closeImage.addEventListener('click', function(evt) {
   evt.preventDefault();
 
-  closePopup(openPlace);
+  closePopup(popupPlace);
 
 });
 
@@ -121,17 +120,14 @@ function keyHandler (evt) {
 
 
 function openPopup(popup) {
-  popup.addEventListener('click', popupClose);
+  popup.addEventListener('click', closeByOverlayClick);
   document.addEventListener('keydown', keyHandler);
 
-  clearPopup(popup);
-
   popup.classList.add('popup_opened');
-
 }
 
 btnEdit.addEventListener('click', function () {
-
+  clearPopup(popupProfile);
   openPopup(popupProfile);
 
   nameInput.value = profileName.textContent;
@@ -141,10 +137,9 @@ btnEdit.addEventListener('click', function () {
 
 function closePopup(popup){
   document.removeEventListener('keydown', keyHandler);
-  popup.removeEventListener('click', popupClose);
+  popup.removeEventListener('click', closeByOverlayClick);
 
   popup.classList.remove('popup_opened');
-  //clearPopup(popup);
 }
 
 // Еще вариант закрытия
@@ -155,7 +150,7 @@ btnClose.addEventListener('click', function () {
 });
 
 
-function popupClose(evt) {
+function closeByOverlayClick(evt) {
   const popupOpened = document.querySelector('.popup_opened');
   if (evt.target !== evt.currentTarget) {
     return
@@ -178,19 +173,19 @@ formElement.addEventListener('submit', formSubmitHandler);
 
 //Окно "Новое место"
 btnAddPlace.addEventListener('click', function () {
-
-  openPopup(addPlace);
+  clearPopup(popupNewPlace);
+  openPopup(popupNewPlace);
 
   popupButton.classList.add('popup__button_disabled');
-  popupButton.setAttribute('disabled', 'disabled');
+  popupButton.disabled = true;
   formElementPlace.reset();
 
 });
 
-//btnClosePlace.addEventListener('click', () => closeProfilePopup(addPlace));
+//btnClosePlace.addEventListener('click', () => closeProfilePopup(popupNewPlace));
 btnClosePlace.addEventListener('click',function () {
 
-  closePopup(addPlace);
+  closePopup(popupNewPlace);
 });
 
 
@@ -199,7 +194,7 @@ function formPlaceSubmitHandler (evt) {
 
   cardsContainer.prepend(addCards({name: `${nameInputPlace.value}`, link: `${linkInputPlace.value}`}));
 
-  closePopup(addPlace);
+  closePopup(popupNewPlace);
 
 }
 
