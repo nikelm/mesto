@@ -1,6 +1,7 @@
+
 //Очистка формы
 
-function clearPopup(popup) {
+export function clearPopup(popup) {
 
   const inputPopup = popup.querySelectorAll('.popup__input');
   const spanPopup = popup.querySelectorAll('.popup__error');
@@ -22,10 +23,7 @@ function clearPopup(popup) {
   });
 }
 
-/* Не то, чтобы не принял во внимание, просто тут я надолго застрял, столько трудов... Жалко удалять было в общем, если можно не удалять).
-Переделал по варианту: "добавить их в конфигурационный объект, а затем достать оттуда." */
-
-const showInputError = (formElement, inputElement, inputErrorClass, errorClass, inputName, inputJob) => {
+export const showInputError = (formElement, inputElement, inputErrorClass, errorClass, inputName, inputJob) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
 
@@ -51,7 +49,7 @@ const showInputError = (formElement, inputElement, inputErrorClass, errorClass, 
 
 }
 
-const hideInputError = (formElement, inputElement, inputErrorClass, errorClass) => {
+export const hideInputError = (formElement, inputElement, inputErrorClass, errorClass) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
   errorElement.classList.remove(errorClass);
@@ -60,14 +58,14 @@ const hideInputError = (formElement, inputElement, inputErrorClass, errorClass) 
 }
 
 
-const hasInvalidInput = (getInputList) => {
+export const hasInvalidInput = (getInputList) => {
   return getInputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
 }
 
 
-const toggleButtonState = (getInputList, buttonElement, inactiveButtonClass) => {
+export const toggleButtonState = (getInputList, buttonElement, inactiveButtonClass) => {
   if (hasInvalidInput(getInputList)) {
     buttonElement.classList.add(inactiveButtonClass);
     buttonElement.disabled = true;
@@ -77,7 +75,7 @@ const toggleButtonState = (getInputList, buttonElement, inactiveButtonClass) => 
   }
 }
 
-const checkInputValidity = (formElement, inputElement, inputErrorClass, errorClass, inputName, inputJob) => {
+export const checkInputValidity = (formElement, inputElement, inputErrorClass, errorClass, inputName, inputJob) => {
   if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputErrorClass, errorClass, inputName, inputJob);
   } else {
@@ -96,7 +94,7 @@ const setEventListeners = (formElement, {inputSelector, submitButtonSelector, in
   getInputList.forEach((inputElement) => {
 
       inputElement.addEventListener('input', () => {
-       /* isValid(formElement, inputElement, inputErrorClass, errorClass);*/
+
         checkInputValidity(formElement, inputElement, inputErrorClass, errorClass, inputName, inputJob);
         toggleButtonState(getInputList, buttonElement, inactiveButtonClass);
       });
@@ -124,3 +122,4 @@ enableValidation({
   inputName: 'fullname',
   inputJob: 'job'
 });
+

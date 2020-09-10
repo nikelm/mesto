@@ -1,3 +1,5 @@
+import { Card } from './Card.js'
+
 const popupProfile = document.querySelector('.popup_user');
 const btnEdit = document.querySelector('.profile__link');
 const btnClose = document.querySelector('.popup__close');
@@ -7,6 +9,7 @@ const formElement = document.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_description');
 
+
 const popupNewPlace = document.querySelector('.popup_new');
 const btnAddPlace = document.querySelector('.profile__add');
 const btnClosePlace = document.querySelector('.popup__close_new');
@@ -15,6 +18,9 @@ const nameInputPlace = document.querySelector('.popup__input-new_type_name');
 const linkInputPlace = document.querySelector('.popup__input-new_type_link');
 const popupButton = document.querySelector('.popup__button-save');
 
+
+const popupPlace = document.querySelector('.popup-place');
+const closeImage = document.querySelector('.popup-place__close');
 
 const initialCards = [
   {
@@ -44,72 +50,6 @@ const initialCards = [
 ];
 
 
-const cardsContainer = document.querySelector('.elements'); //Куда копируем
-const imageSource = document.querySelector('.popup-place__image');
-const imageName = document.querySelector('.popup-place__title');
-const popupPlace = document.querySelector('.popup-place');
-const closeImage = document.querySelector('.popup-place__close');
-
-
-// Добавляем карточки на страницу
-const addCards = (card) => {
-
-  const cardsTemplate = document.querySelector('.template').content.cloneNode(true); //Что копируем
-
-  cardsTemplate.querySelector('.card__item-subtitle').textContent = card.name;
-  cardsTemplate.querySelector('.card__image').src = card.link;
-
-  const source = cardsTemplate.querySelector('.card__image');
-  const namePlace = cardsTemplate.querySelector('.card__item-subtitle');
-
-  const like = cardsTemplate.querySelector('.card__like');
-  const btnlike = cardsTemplate.querySelector('.card__item-button');
-  const btnDelete = cardsTemplate.querySelector('.card__delete-icon');
-  const placeImage = cardsTemplate.querySelector('.card__button');
-
- //Удалить карточку
-  btnDelete.addEventListener('click', function(evt) {
-    evt.preventDefault();
-
-    const delCard = evt.target.closest('.card');
-    delCard.remove();
-  });
-
-  //Отметить карточку лайком
-  btnlike.addEventListener('click', function(evt) {
-    evt.preventDefault();
-
-    like.classList.toggle('card__like_active');
-
-  });
-
-  //Показать изображение
-  placeImage.addEventListener('click', function(evt) {
-    evt.preventDefault();
-
-      imageSource.src = source.src;
-      imageName.textContent = namePlace.textContent;
-
-      openPopup(popupPlace);
-
-  });
-
-  return cardsTemplate;
-}
-
-closeImage.addEventListener('click', function(evt) {
-  evt.preventDefault();
-
-  closePopup(popupPlace);
-
-});
-
-for (let i = 0; i < initialCards.length; i++) {
-
-  cardsContainer.append(addCards(initialCards[i]));
-}
-
-
 function keyHandler (evt) {
   const popupOpen = document.querySelector('.popup_opened');
 
@@ -118,6 +58,14 @@ function keyHandler (evt) {
   }
 }
 
+function closeByOverlayClick(evt) {
+  const popupOpened = document.querySelector('.popup_opened');
+  if (evt.target !== evt.currentTarget) {
+    return
+  } else {
+    closePopup(popupOpened);
+  }
+}
 
 function openPopup(popup) {
   popup.addEventListener('click', closeByOverlayClick);
@@ -142,22 +90,18 @@ function closePopup(popup){
   popup.classList.remove('popup_opened');
 }
 
-// Еще вариант закрытия
-//btnClose.addEventListener('click', () => closeProfilePopup(popupProfile));
 
 btnClose.addEventListener('click', function () {
   closePopup(popupProfile);
 });
 
 
-function closeByOverlayClick(evt) {
-  const popupOpened = document.querySelector('.popup_opened');
-  if (evt.target !== evt.currentTarget) {
-    return
-  } else {
-    closePopup(popupOpened);
-  }
-}
+closeImage.addEventListener('click', function(evt) {
+  evt.preventDefault();
+
+  closePopup(popupPlace);
+
+});
 
 
 function formSubmitHandler (evt) {
@@ -171,6 +115,7 @@ function formSubmitHandler (evt) {
 
 formElement.addEventListener('submit', formSubmitHandler);
 
+
 //Окно "Новое место"
 btnAddPlace.addEventListener('click', function () {
   clearPopup(popupNewPlace);
@@ -182,7 +127,7 @@ btnAddPlace.addEventListener('click', function () {
 
 });
 
-//btnClosePlace.addEventListener('click', () => closeProfilePopup(popupNewPlace));
+
 btnClosePlace.addEventListener('click',function () {
 
   closePopup(popupNewPlace);
@@ -198,7 +143,18 @@ function formPlaceSubmitHandler (evt) {
 
 }
 
+
 formElementPlace.addEventListener('submit', formPlaceSubmitHandler);
+
+
+initialCards.forEach((item) => {
+  const cardsContainer = document.querySelector('.elements'); //Куда копируем
+  const card = new Card(item, '.template', openPopup, popupPlace);  //Создаем экземпляр карточки
+  const cardElement = card.generateCard();
+
+  cardsContainer.append(cardElement);       // Отрисовка карточек на странице
+});
+
 
 
 
