@@ -1,4 +1,5 @@
 import { Card } from './Card.js'
+import { FormValidator } from './FormValidator.js'
 
 const popupProfile = document.querySelector('.popup_user');
 const btnEdit = document.querySelector('.profile__link');
@@ -9,7 +10,6 @@ const formElement = document.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_description');
 
-
 const popupNewPlace = document.querySelector('.popup_new');
 const btnAddPlace = document.querySelector('.profile__add');
 const btnClosePlace = document.querySelector('.popup__close_new');
@@ -17,7 +17,7 @@ const formElementPlace = document.querySelector('.popup__form_new');
 const nameInputPlace = document.querySelector('.popup__input-new_type_name');
 const linkInputPlace = document.querySelector('.popup__input-new_type_link');
 const popupButton = document.querySelector('.popup__button-save');
-
+const cardsContainer = document.querySelector('.elements');
 
 const popupPlace = document.querySelector('.popup-place');
 const closeImage = document.querySelector('.popup-place__close');
@@ -67,6 +67,16 @@ function closeByOverlayClick(evt) {
   }
 }
 
+const userForm = new FormValidator(
+  { inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible',
+    inputName: 'fullname',
+    inputJob: 'job'
+  }, '.popup__form', popupProfile);
+
 function openPopup(popup) {
   popup.addEventListener('click', closeByOverlayClick);
   document.addEventListener('keydown', keyHandler);
@@ -75,7 +85,8 @@ function openPopup(popup) {
 }
 
 btnEdit.addEventListener('click', function () {
-  clearPopup(popupProfile);
+
+  userForm.enableValidation();
   openPopup(popupProfile);
 
   nameInput.value = profileName.textContent;
@@ -116,9 +127,21 @@ function formSubmitHandler (evt) {
 formElement.addEventListener('submit', formSubmitHandler);
 
 
+const placeForm = new FormValidator(
+  { inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible',
+    inputName: 'fullname',
+    inputJob: 'job'
+  }, '.popup__form', popupNewPlace);
+
+
 //Окно "Новое место"
 btnAddPlace.addEventListener('click', function () {
-  clearPopup(popupNewPlace);
+
+  placeForm.enableValidation();
   openPopup(popupNewPlace);
 
   popupButton.classList.add('popup__button_disabled');
@@ -137,7 +160,9 @@ btnClosePlace.addEventListener('click',function () {
 function formPlaceSubmitHandler (evt) {
   evt.preventDefault();
 
-  cardsContainer.prepend(addCards({name: `${nameInputPlace.value}`, link: `${linkInputPlace.value}`}));
+  const newCard = new Card({name: `${nameInputPlace.value}`, link: `${linkInputPlace.value}`}, '.template', openPopup, popupPlace);
+
+  cardsContainer.prepend(newCard.generateCard());
 
   closePopup(popupNewPlace);
 
@@ -148,11 +173,11 @@ formElementPlace.addEventListener('submit', formPlaceSubmitHandler);
 
 
 initialCards.forEach((item) => {
-  const cardsContainer = document.querySelector('.elements'); //Куда копируем
-  const card = new Card(item, '.template', openPopup, popupPlace);  //Создаем экземпляр карточки
+
+  const card = new Card(item, '.template', openPopup, popupPlace);
   const cardElement = card.generateCard();
 
-  cardsContainer.append(cardElement);       // Отрисовка карточек на странице
+  cardsContainer.append(cardElement);
 });
 
 
