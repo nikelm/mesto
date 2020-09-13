@@ -23,6 +23,7 @@ export class Card {
 
   _deleteCardClick() {
     this._element.closest('.card').remove();
+    this._element = null;
   }
 
   _seePlaceClick() {
