@@ -25,6 +25,7 @@ import { Card } from './Card.js'
 import { FormValidator } from './FormValidator.js'
 
 
+
 const userForm = new FormValidator(userFormData, popupProfile);
 
 
@@ -97,7 +98,6 @@ formElement.addEventListener('submit', formSubmitHandler);
 
 
 const placeForm = new FormValidator(userFormData, popupNewPlace);
-
 
 //Окно "Новое место"
 btnAddPlace.addEventListener('click', function () {
