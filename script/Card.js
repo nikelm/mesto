@@ -3,8 +3,8 @@ export class Card {
     this._image = data.link;
     this._text = data.name;
     this._cardSelector = cardSelector;
-    this._openPopup = openPopup;
-    this._popupPlace = popupPlace;
+    //this._openPopup = openPopup;
+    //this._popupPlace = popupPlace;
   }
 
   // Забираем разметку из HTML и клонируем элемент. Метод приватный
@@ -31,7 +31,7 @@ export class Card {
     const imageName = document.querySelector('.popup-place__title');
     imageSource.src = this._image;
     imageName.textContent = this._text;
-    this._openPopup(this._popupPlace);
+    //this._openPopup(this._popupPlace);
   }
 
   //Обработчики событий

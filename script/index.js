@@ -23,11 +23,31 @@ import  {
 
 import { Card } from './Card.js'
 import { FormValidator } from './FormValidator.js'
+import { Section } from './Section.js';
+import { Popup, PopupWithImage } from './Popup.js';
+
+
+const cardsList = new Section({
+  items: initialCards,
+    renderer: (item) => {
+      const card = new Card(item, '.template'/*, openPopup, popupPlace*/);
+
+      const cardElement = card.generateCard();
+
+      cardsList.addItem(cardElement);
+    },
+  },
+
+  cardsContainer
+);
+
+cardsList.renderItems();
 
 
 const userForm = new FormValidator(userFormData, popupProfile);
+const userPopup = new Popup(popupProfile);
 
-
+/*
 function keyHandler (evt) {
   const popupOpen = document.querySelector('.popup_opened');
 
@@ -52,17 +72,19 @@ function openPopup(popup) {
 
   popup.classList.add('popup_opened');
 }
-
+*/
 btnEdit.addEventListener('click', function () {
 
   userForm.enableValidation();
-  openPopup(popupProfile);
+  //openPopup(popupProfile);
+  //userPopup.setEventListeners();
+  userPopup.openPopup();
 
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
 });
 
-
+/*
 function closePopup(popup){
   document.removeEventListener('keydown', keyHandler);
   popup.removeEventListener('click', closeByOverlayClick);
@@ -70,9 +92,9 @@ function closePopup(popup){
   popup.classList.remove('popup_opened');
 }
 
-
+*/
 btnClose.addEventListener('click', function () {
-  closePopup(popupProfile);
+  userPopup.closePopup();
 });
 
 
@@ -132,7 +154,7 @@ function formPlaceSubmitHandler (evt) {
 
 formElementPlace.addEventListener('submit', formPlaceSubmitHandler);
 
-
+/*
 initialCards.forEach((item) => {
 
   const createCard = (item) => {
@@ -144,7 +166,7 @@ initialCards.forEach((item) => {
 
 });
 
-
+*/
 
 
 
