@@ -6,7 +6,7 @@ export class Popup {
   }
 
   open() {
-    imageSource.src = this._link;
+    imageSource.src = this._image;
 
     this._popupSelector.classList.add('popup_opened');
   }
@@ -26,7 +26,7 @@ export class Popup {
       this.close();
     });
 
-    //document.addEventListener('keydown', this._handleEscClose());
+    document.addEventListener('keydown', this._handleEscClose());
 
   }
 }
@@ -38,10 +38,8 @@ export class PopupWithImage extends Popup {
   }
 
   open() {
-    document.querySelector('.popup-place__image').src = this._image;
-    document.querySelector('.popup-place__title').textContent = this._text;
-    super.open();
 
+    super.open();
   }
 
   close() {
