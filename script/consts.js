@@ -18,6 +18,7 @@ const cardsContainer = document.querySelector('.elements');
 
 const popupPlace = document.querySelector('.popup-place');
 const closeImage = document.querySelector('.popup-place__close');
+const imageSource = document.querySelector('.popup-place__image');
 
 const initialCards = [
   {
@@ -77,5 +78,6 @@ export {
   popupPlace,
   closeImage,
   initialCards,
-  userFormData
+  userFormData,
+  imageSource
 }
