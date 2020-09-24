@@ -1,14 +1,17 @@
+import {imageSource} from './consts.js';
+
 export class Popup {
   constructor(popupSelector) {
     this._popupSelector = popupSelector;
   }
 
-  openPopup() {
+  open() {
+    imageSource.src = this._link;
 
     this._popupSelector.classList.add('popup_opened');
   }
 
-  closePopup() {
+  close() {
     this._popupSelector.classList.remove('popup_opened');
   }
 
@@ -20,7 +23,7 @@ export class Popup {
 
   setEventListeners() {
     this._popupSelector.querySelector('.popup__close').addEventListener('click', () => {
-      this.closePopup();
+      this.close();
     });
 
     //document.addEventListener('keydown', this._handleEscClose());
@@ -30,16 +33,19 @@ export class Popup {
 
 
 export class PopupWithImage extends Popup {
-  constructor(cardSelector) {
+  constructor(popupSelector) {
+    super(popupSelector);
+  }
+
+  open() {
+    document.querySelector('.popup-place__image').src = this._image;
+    document.querySelector('.popup-place__title').textContent = this._text;
+    super.open();
 
   }
 
-  openPopup() {
-    super.openPopup();
-  }
-
-  closePopup() {
-    super.closePopup();
+  close() {
+    super.close();
   }
 
   setEventListeners() {
@@ -50,6 +56,6 @@ export class PopupWithImage extends Popup {
 
 export class PopupWithForm extends Popup {
   constructor() {
-    
+
   }
 }

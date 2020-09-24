@@ -27,25 +27,25 @@ import { Section } from './Section.js';
 import { Popup, PopupWithImage } from './Popup.js';
 
 
-const cardsList = new Section({
-  items: initialCards,
+const userForm = new FormValidator(userFormData, popupProfile);
+const userPopup = new Popup(popupProfile);
+const imagePopup = new PopupWithImage(popupPlace);
+
+const cardsList = new Section({items: initialCards,
     renderer: (item) => {
-      const card = new Card(item, '.template'/*, openPopup, popupPlace*/);
+      const card = new Card(item, '.template', imagePopup);
 
       const cardElement = card.generateCard();
 
       cardsList.addItem(cardElement);
     },
-  },
-
-  cardsContainer
-);
+  }, cardsContainer);
 
 cardsList.renderItems();
 
 
-const userForm = new FormValidator(userFormData, popupProfile);
-const userPopup = new Popup(popupProfile);
+
+
 
 /*
 function keyHandler (evt) {
@@ -78,7 +78,7 @@ btnEdit.addEventListener('click', function () {
   userForm.enableValidation();
   //openPopup(popupProfile);
   //userPopup.setEventListeners();
-  userPopup.openPopup();
+  userPopup.open();
 
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
@@ -94,14 +94,14 @@ function closePopup(popup){
 
 */
 btnClose.addEventListener('click', function () {
-  userPopup.closePopup();
+  userPopup.close();
 });
 
 
 closeImage.addEventListener('click', function(evt) {
   evt.preventDefault();
 
-  closePopup(popupPlace);
+  imagePopup.close();
 
 });
 
