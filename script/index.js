@@ -34,7 +34,14 @@ const imagePopup = new PopupWithImage(popupPlace);
 
 const cardsList = new Section({items: initialCards,
     renderer: (item) => {
-      const card = new Card(item, '.template', imagePopup);
+      const card = new Card(item, '.template', {
+        handleCardClick: ()=> {
+
+          imagePopup.open(card);
+        }
+      });
+
+
 
       const cardElement = card.generateCard();
 

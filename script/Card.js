@@ -1,10 +1,10 @@
 export class Card {
-  constructor(data, cardSelector, imagePopup) {
+  constructor(data, cardSelector, {handleCardClick}) {
     this._image = data.link;
     this._text = data.name;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
 
-    this._popupPlace = imagePopup;
   }
 
   // Забираем разметку из HTML и клонируем элемент. Метод приватный
@@ -26,13 +26,6 @@ export class Card {
     this._element = null;
   }
 
-  _seePlaceClick() {
-
-    document.querySelector('.popup-place__image').src = this._image;
-    document.querySelector('.popup-place__title').textContent = this._text;
-    this._popupPlace.open(this._image);
-  }
-
   //Обработчики событий
   _setEventListeners() {
 
@@ -45,7 +38,7 @@ export class Card {
     });
 
     this._element.querySelector('.card__button').addEventListener('click', () => {
-      this._seePlaceClick();
+      this._handleCardClick();
     });
 
   }
