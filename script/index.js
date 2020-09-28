@@ -24,30 +24,48 @@ import  {
 import { Card } from './Card.js'
 import { FormValidator } from './FormValidator.js'
 import { Section } from './Section.js';
-import { Popup, PopupWithImage } from './Popup.js';
+import { Popup, PopupWithImage, PopupWithForm } from './Popup.js';
 
 
-
+const placeForm = new FormValidator(userFormData, popupNewPlace);
 const userForm = new FormValidator(userFormData, popupProfile);
+
+const placePopup = new PopupWithForm(popupNewPlace,
+  {formPlaceSubmitHandler: (item) => {
+    const newCard = new Card(item, '.template', {
+
+      handleCardClick: () => {
+        imagePopup.open(card);
+        imagePopup.setEventListeners();
+      }
+    });
+
+    const newCardElement = newCard.generateCard();
+
+    cardsList.addItem(newCardElement);
+  }
+})
 const userPopup = new Popup(popupProfile);
 const imagePopup = new PopupWithImage(popupPlace);
 
 const cardsList = new Section({items: initialCards,
     renderer: (item) => {
       const card = new Card(item, '.template', {
-        handleCardClick: ()=> {
 
+        handleCardClick: () => {
           imagePopup.open(card);
+          imagePopup.setEventListeners();
         }
       });
-
-
 
       const cardElement = card.generateCard();
 
       cardsList.addItem(cardElement);
     },
   }, cardsContainer);
+
+
+
 
 cardsList.renderItems();
 
@@ -105,14 +123,14 @@ btnClose.addEventListener('click', function () {
   userPopup.close();
 });
 
-
+/*
 closeImage.addEventListener('click', function(evt) {
   evt.preventDefault();
 
   imagePopup.close();
 
 });
-
+*/
 
 function formSubmitHandler (evt) {
   evt.preventDefault();
@@ -126,24 +144,24 @@ function formSubmitHandler (evt) {
 formElement.addEventListener('submit', formSubmitHandler);
 
 
-const placeForm = new FormValidator(userFormData, popupNewPlace);
+
 
 //Окно "Новое место"
 btnAddPlace.addEventListener('click', function () {
 
   placeForm.enableValidation();
-  openPopup(popupNewPlace);
+  //openPopup(popupNewPlace);
+  placePopup.open();
 
   popupButton.classList.add('popup__button_disabled');
   popupButton.disabled = true;
-  formElementPlace.reset();
+  //formElementPlace.reset();
 
 });
 
-
+/*
 btnClosePlace.addEventListener('click',function () {
-
-  closePopup(popupNewPlace);
+  placePopup.close();
 });
 
 
@@ -159,9 +177,9 @@ function formPlaceSubmitHandler (evt) {
 }
 
 
-formElementPlace.addEventListener('submit', formPlaceSubmitHandler);
+//formElementPlace.addEventListener('submit', formPlaceSubmitHandler);
 
-/*
+
 initialCards.forEach((item) => {
 
   const createCard = (item) => {
