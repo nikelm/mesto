@@ -1,6 +1,7 @@
 export class Popup {
   constructor(popupSelector) {
     this._popupSelector = popupSelector;
+
   }
 
   open() {
@@ -8,13 +9,21 @@ export class Popup {
   }
 
   close() {
+    document.removeEventListener('keydown', this._handleEscClose);
     this._popupSelector.classList.remove('popup_opened');
   }
 
-  _handleEscClose() {
-    if (event.key === 'Escape') {
-      this.closePopup();
-    }
+
+  _handleEscClose(evt) {
+
+    this._popupOpen = document.querySelector('.popup_opened');
+      if ((evt.key === 'Escape') && (this._popupOpen)) {
+        //document.removeEventListener('keydown', this._handleEscClose.bind(this));
+        //this._popupOpen.classList.remove('popup_opened');
+        console.log(this.close);
+        this.close;
+      }
+
   }
 
   setEventListeners() {
@@ -22,7 +31,8 @@ export class Popup {
       this.close();
     });
 
-    document.addEventListener('keydown', this._handleEscClose());
+    document.addEventListener('keydown', this._handleEscClose);
+
 
   }
 }
@@ -33,7 +43,8 @@ export class PopupWithImage extends Popup {
   }
 
   open(card) {
-    
+    this.setEventListeners();
+
     this._image = card._image;
     this._text = card._text;
 
@@ -52,18 +63,42 @@ export class PopupWithImage extends Popup {
 }
 
 
-
-
-
-
-
-
-
-
-
-
 export class PopupWithForm extends Popup {
-  constructor() {
+  constructor(popupSelector, {handleFormSubmit}) {
+    super(popupSelector);
+    this._handleFormSubmit = handleFormSubmit;
 
+  }
+
+  _getInputValues() {
+    this._inputList = this._popupSelector.querySelectorAll('.popup__input');
+
+    this._formValues = {};
+    this._inputList.forEach((input) => {
+      this._formValues[input.name] = input.value;
+
+      return this._formValues;
+    });
+  }
+
+  setEventListeners() {
+    this._popupSelector.querySelector('.popup__form_new').addEventListener('submit', (evt) => {
+      evt.preventDefault();
+
+      this._handleFormSubmit(this._getInputValues());
+
+
+    });
+      super.setEventListeners();
+  }
+
+  open() {
+    this.setEventListeners();
+    super.open();
+  }
+
+  close() {
+    this._popupSelector.querySelector('.popup__form_new').reset();
+    super.close();
   }
 }

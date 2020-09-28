@@ -24,13 +24,33 @@ import  {
 import { Card } from './Card.js'
 import { FormValidator } from './FormValidator.js'
 import { Section } from './Section.js';
-import { Popup, PopupWithImage } from './Popup.js';
+import { Popup, PopupWithImage, PopupWithForm } from './Popup.js';
+import { UserInfo } from './UserInfo.js';
 
 
-
+const placeForm = new FormValidator(userFormData, popupNewPlace);
 const userForm = new FormValidator(userFormData, popupProfile);
 const userPopup = new Popup(popupProfile);
+const userInfo = new UserInfo({nameInput, jobInput});
+
+
 const imagePopup = new PopupWithImage(popupPlace);
+
+
+const placePopup = new PopupWithForm(popupNewPlace,
+  {handleFormSubmit: () => {
+    const newCard = new Card({name: `${nameInputPlace.value}`, link: `${linkInputPlace.value}`}, '.template', {
+      handleCardClick: () => {
+
+        imagePopup.open(newCard);
+      }
+    });
+
+    cardsContainer.prepend(newCard.generateCard());
+    placePopup.close();
+  }
+});
+
 
 const cardsList = new Section({items: initialCards,
     renderer: (item) => {
@@ -41,13 +61,15 @@ const cardsList = new Section({items: initialCards,
         }
       });
 
-
-
       const cardElement = card.generateCard();
 
       cardsList.addItem(cardElement);
     },
   }, cardsContainer);
+
+
+
+
 
 cardsList.renderItems();
 
@@ -85,11 +107,12 @@ btnEdit.addEventListener('click', function () {
 
   userForm.enableValidation();
   //openPopup(popupProfile);
-  //userPopup.setEventListeners();
+  userPopup.setEventListeners();
   userPopup.open();
+  userInfo.getUserInfo();
 
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileDescription.textContent;
+  //nameInput.value = profileName.textContent;
+  //jobInput.value = profileDescription.textContent;
 });
 
 /*
@@ -113,7 +136,7 @@ closeImage.addEventListener('click', function(evt) {
 
 });
 
-
+/*
 function formSubmitHandler (evt) {
   evt.preventDefault();
 
@@ -124,15 +147,16 @@ function formSubmitHandler (evt) {
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
+*/
 
 
-const placeForm = new FormValidator(userFormData, popupNewPlace);
 
 //Окно "Новое место"
 btnAddPlace.addEventListener('click', function () {
 
   placeForm.enableValidation();
-  openPopup(popupNewPlace);
+  //openPopup(popupNewPlace);
+  placePopup.open();
 
   popupButton.classList.add('popup__button_disabled');
   popupButton.disabled = true;
@@ -143,10 +167,11 @@ btnAddPlace.addEventListener('click', function () {
 
 btnClosePlace.addEventListener('click',function () {
 
-  closePopup(popupNewPlace);
+  //closePopup(popupNewPlace);
+  placePopup.close();
 });
 
-
+/*
 function formPlaceSubmitHandler (evt) {
   evt.preventDefault();
 
@@ -157,9 +182,9 @@ function formPlaceSubmitHandler (evt) {
   closePopup(popupNewPlace);
 
 }
+*/
 
-
-formElementPlace.addEventListener('submit', formPlaceSubmitHandler);
+//formElementPlace.addEventListener('submit', formPlaceSubmitHandler);
 
 /*
 initialCards.forEach((item) => {
