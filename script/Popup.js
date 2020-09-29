@@ -1,6 +1,7 @@
 export class Popup {
   constructor(popupSelector) {
     this._popupSelector = popupSelector;
+
   }
 
   open() {
@@ -8,19 +9,27 @@ export class Popup {
   }
 
   close() {
+    document.removeEventListener('keydown', this._handleEscClose);
     this._popupSelector.classList.remove('popup_opened');
   }
 
-  _handleEscClose() {
-    if (event.key === 'Escape') {
-      this.closePopup();
+
+  _handleEscClose(evt) {
+    this._popupOpen = document.querySelector('.popup_opened');
+      if ((evt.key === 'Escape') && (this._popupOpen)) {
+        document.removeEventListener('keydown', this._handleEscClose);
+        this._popupOpen.classList.remove('popup_opened');
     }
+
   }
 
   setEventListeners() {
-    this._popupSelector.querySelector('.popup__close').addEventListener('click', this.close());
+    this._popupSelector.querySelector('.popup__close').addEventListener('click', () => {
+      this.close();
+    });
 
-    this._popupSelector.addEventListener('keydown', this._handleEscClose());
+    document.addEventListener('keydown', this._handleEscClose);
+
 
   }
 }
@@ -31,6 +40,7 @@ export class PopupWithImage extends Popup {
   }
 
   open(card) {
+    this.setEventListeners();
 
     this._image = card._image;
     this._text = card._text;
@@ -41,51 +51,51 @@ export class PopupWithImage extends Popup {
   }
 
   close() {
-    this._popupSelector.querySelector('.popup-place__close').removeEventListener('click', super.close());
-
+    super.close();
   }
 
   setEventListeners() {
-    this._popupSelector.querySelector('.popup-place__close').addEventListener('click', () => {
-      this.close();
-    });
-    //super.setEventListeners();
+    super.setEventListeners();
   }
 }
 
 
 export class PopupWithForm extends Popup {
-  constructor(popupSelector, formPlaceSubmitHandler) {
+  constructor(popupSelector, {handleFormSubmit}) {
     super(popupSelector);
-    this._formSubmitHandler = formPlaceSubmitHandler;
+    this._handleFormSubmit = handleFormSubmit;
+
   }
 
   _getInputValues() {
-    this._inputList = this._element.querySelectorAll('.popup__input');
+    this._inputList = this._popupSelector.querySelectorAll('.popup__input');
 
     this._formValues = {};
     this._inputList.forEach((input) => {
       this._formValues[input.name] = input.value;
+      return this._formValues;
     });
 
-    return this._formValues;
   }
 
   setEventListeners() {
-    this._element.addEventListener('submit', (evt) => {
+    this._popupSelector.querySelector('.popup__form_new').addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this._formPlaceSubmitHandler(this._getInputValues());
 
-      this._element.reset();
+      this._handleFormSubmit(this._getInputValues());
+
+
     });
-    super.setEventListeners();
+      super.setEventListeners();
   }
 
   open() {
+    this.setEventListeners();
     super.open();
   }
 
   close() {
+    this._popupSelector.querySelector('.popup__form_new').reset();
     super.close();
   }
 }
