@@ -18,10 +18,9 @@ export class Popup {
 
     this._popupOpen = document.querySelector('.popup_opened');
       if ((evt.key === 'Escape') && (this._popupOpen)) {
-        //document.removeEventListener('keydown', this._handleEscClose.bind(this));
-        //this._popupOpen.classList.remove('popup_opened');
-        console.log(this.close);
-        this.close;
+        document.removeEventListener('keydown', this._handleEscClose);
+        this._popupOpen.classList.remove('popup_opened');
+
       }
 
   }
