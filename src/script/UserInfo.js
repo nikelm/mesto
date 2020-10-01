@@ -5,7 +5,7 @@ export class UserInfo {
     this._profileName = document.querySelector('.profile__title');
     this._profileDescription = document.querySelector('.profile__paragraph');
     this._element = document.querySelector('.popup_user');
-
+    
   }
 
   _close() {
@@ -37,3 +37,4 @@ export class UserInfo {
 
 
 }
+

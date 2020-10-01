@@ -4,7 +4,7 @@
   "description": "Проект посвящен оттачиванию базовых навыков в работе с javascript.\r Для этого необходимо выполнить следующее:",
   "main": "index.js",
   "scripts": {
-    "build": "rd /s /q dist && webpack",
+    "build": "rimraf dist && webpack",
     "dev": "webpack-dev-server --open --watch"
   },
   "repository": {

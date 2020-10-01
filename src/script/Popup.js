@@ -1,7 +1,9 @@
+import  { nameInputPlace, linkInputPlace } from './consts.js'
+
 export class Popup {
   constructor(popupSelector) {
     this._popupSelector = popupSelector;
-
+    this._closeByOverlayClick = this._closeByOverlayClick.bind(this);
   }
 
   open() {
@@ -9,7 +11,6 @@ export class Popup {
   }
 
   close() {
-    document.removeEventListener('keydown', this._handleEscClose);
     this._popupSelector.classList.remove('popup_opened');
   }
 
@@ -19,9 +20,16 @@ export class Popup {
       if ((evt.key === 'Escape') && (this._popupOpen)) {
         document.removeEventListener('keydown', this._handleEscClose);
         this._popupOpen.classList.remove('popup_opened');
-
       }
+  }
 
+  _closeByOverlayClick(evt) {
+    this._popupOpen = document.querySelector('.popup_opened');
+    if (evt.target !== evt.currentTarget) {
+      return
+    } else {
+      this.close();
+    }
   }
 
   setEventListeners() {
@@ -29,9 +37,8 @@ export class Popup {
       this.close();
     });
 
+    this._popupSelector.addEventListener('click', this._closeByOverlayClick);
     document.addEventListener('keydown', this._handleEscClose);
-
-
   }
 }
 
@@ -65,29 +72,28 @@ export class PopupWithForm extends Popup {
   constructor(popupSelector, {handleFormSubmit}) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
-
+    this._formValues = {};
+    this._formSubmitHandler = this._formSubmitHandler.bind(this);
   }
 
   _getInputValues() {
-    this._inputList = this._popupSelector.querySelectorAll('.popup__input');
+        
+    this._formValues.name = nameInputPlace.value;
+    this._formValues.link = linkInputPlace.value;
+   
+    return this._formValues;
+    
+  }
 
-    this._formValues = {};
-    this._inputList.forEach((input) => {
-      this._formValues[input.name] = input.value;
-      return this._formValues;
-    });
-
+  _formSubmitHandler(evt) {
+    evt.preventDefault();
+    
+    this._handleFormSubmit(this._getInputValues());
   }
 
   setEventListeners() {
-    this._popupSelector.querySelector('.popup__form_new').addEventListener('submit', (evt) => {
-      evt.preventDefault();
-
-      this._handleFormSubmit(this._getInputValues());
-
-
-    });
-      super.setEventListeners();
+    this._popupSelector.querySelector('.popup__form_new').addEventListener('submit', this._formSubmitHandler);
+    super.setEventListeners();
   }
 
   open() {
@@ -97,6 +103,7 @@ export class PopupWithForm extends Popup {
 
   close() {
     this._popupSelector.querySelector('.popup__form_new').reset();
+    this._popupSelector.querySelector('.popup__form_new').removeEventListener('submit', this._formSubmitHandler);
     super.close();
   }
 }

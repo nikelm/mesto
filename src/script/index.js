@@ -4,17 +4,12 @@ import  {
   popupProfile,
   btnEdit,
   btnClose,
-  profileName,
-  profileDescription,
-  formElement,
   nameInput,
   jobInput,
   popupNewPlace,
   btnAddPlace,
   btnClosePlace,
   formElementPlace,
-  nameInputPlace,
-  linkInputPlace,
   popupButton,
   cardsContainer,
   popupPlace,
@@ -38,22 +33,6 @@ const userInfo = new UserInfo({nameInput, jobInput});
 
 const imagePopup = new PopupWithImage(popupPlace);
 
-
-const placePopup = new PopupWithForm(popupNewPlace,
-  {handleFormSubmit: () => {
-    const newCard = new Card({name: `${nameInputPlace.value}`, link: `${linkInputPlace.value}`}, '.template', {
-      handleCardClick: () => {
-
-        imagePopup.open(newCard);
-      }
-    });
-
-    cardsContainer.prepend(newCard.generateCard());
-    placePopup.close();
-  }
-});
-
-
 const cardsList = new Section({items: initialCards,
     renderer: (item) => {
       const card = new Card(item, '.template', {
@@ -71,6 +50,20 @@ const cardsList = new Section({items: initialCards,
 
 cardsList.renderItems();
 
+const placePopup = new PopupWithForm(popupNewPlace,
+  {handleFormSubmit: (formData) => {
+
+    const newCard = new Card(formData, '.template', {
+      handleCardClick: () => {
+
+        imagePopup.open(newCard);
+      }
+    });
+
+    cardsContainer.prepend(newCard.generateCard());
+    placePopup.close();
+  }
+});
 
 btnEdit.addEventListener('click', function () {
 
@@ -80,7 +73,6 @@ btnEdit.addEventListener('click', function () {
   userInfo.getUserInfo();
 
 });
-
 
 btnClose.addEventListener('click', function () {
   userPopup.close();
@@ -94,6 +86,7 @@ closeImage.addEventListener('click', function(evt) {
 
 });
 
+
 //Окно "Новое место"
 btnAddPlace.addEventListener('click', function () {
 
@@ -106,8 +99,9 @@ btnAddPlace.addEventListener('click', function () {
 
 });
 
-
 btnClosePlace.addEventListener('click',function () {
   placePopup.close();
 });
+
+
 
