@@ -1,9 +1,9 @@
-import '../pages/index.css';
+import '../pages/index.css'
 
 import  {
   popupProfile,
   btnEdit,
-  btnClose,
+  btnCloseUser,
   popupNewPlace,
   btnAddPlace,
   btnClosePlace,
@@ -14,26 +14,32 @@ import  {
   closeImage,
   initialCards,
   userFormData,
-  userData
+  userNameSelector,
+  userJobSelector,
+  popupInputName,
+  popupInputJob,
 }  from './consts.js'
 
 import { Card } from './Card.js'
 import { FormValidator } from './FormValidator.js'
 import { Section } from './Section.js';
-import { PopupWithForm } from './Popup.js';
 import { PopupWithImage } from './PopupWithImage.js';
+import { PopupWithForm } from './PopupWithForm.js';
 import { UserInfo } from './UserInfo.js';
 
 const placeForm = new FormValidator(userFormData, popupNewPlace);
 const userForm = new FormValidator(userFormData, popupProfile);
 
 const imagePopup = new PopupWithImage(popupPlace);
+imagePopup.setEventListeners();
+
+const userInfo = new UserInfo({userNameSelector, userJobSelector});
 
 const userPopup = new PopupWithForm(popupProfile, {
 
-  handleFormSubmit: (formData) => {
-    const userInfo = new UserInfo(formData);
-    userInfo.setUserInfo();
+  handleFormSubmit: () => {
+
+    userInfo.setUserInfo(popupInputName, popupInputJob);
     userPopup.close();
   }
 });
@@ -54,16 +60,6 @@ function createCard(item) {
   return card.generateCard();
 }
 
-const placePopup = new PopupWithForm(popupNewPlace,
-  {handleFormSubmit: (formData) => {
-
-    cardsContainer.prepend(createCard(formData));
-    placePopup.close();
-  }
-});
-
-placePopup.setEventListeners();
-
 
 const cardsList = new Section({items: initialCards,
   renderer: (item) => {
@@ -73,18 +69,34 @@ const cardsList = new Section({items: initialCards,
   },
 }, cardsContainer);
 
+
 cardsList.renderItems();
+
+const placePopup = new PopupWithForm(popupNewPlace,
+  {handleFormSubmit: (formData) => {
+
+    //cardsContainer.prepend(createCard(formData));
+
+    cardsList.addItem(createCard(formData));
+
+    placePopup.close();
+  }
+});
+
+
+placePopup.setEventListeners();
+
 
 btnEdit.addEventListener('click', function () {
   userForm.clearPopup();
   userPopup.open();
-
-  const userInfo = new UserInfo(userData);
-  userInfo.getUserInfo();
+  const formValues = userInfo.getUserInfo();
+  popupInputName.value = formValues.userName;
+  popupInputJob.value = formValues.userJob;
 
 });
 
-btnClose.addEventListener('click', function () {
+btnCloseUser.addEventListener('click', function () {
   userPopup.close();
 });
 
@@ -95,7 +107,6 @@ closeImage.addEventListener('click', function(evt) {
   imagePopup.close();
 
 });
-
 placeForm.enableValidation();
 
 //Окно "Новое место"

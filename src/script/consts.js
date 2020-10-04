@@ -1,9 +1,9 @@
 const popupProfile = document.querySelector('.popup_user');
 const btnEdit = document.querySelector('.profile__link');
-const btnClose = document.querySelector('.popup__close');
-const profileName = document.querySelector('.profile__title');
-const profileDescription = document.querySelector('.profile__paragraph');
-const formElement = document.querySelector('.popup__form');
+const btnCloseUser = document.querySelector('.popup__close_user');
+const userNameSelector = document.querySelector('.profile__title');
+const userJobSelector = document.querySelector('.profile__paragraph');
+const formElement = document.querySelector('.popup__form_user');
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_description');
 
@@ -20,7 +20,9 @@ const popupPlace = document.querySelector('.popup-place');
 const closeImage = document.querySelector('.popup-place__close');
 const imageSource = document.querySelector('.popup-place__image');
 
-const userData = {fullname: profileName.textContent, job: profileDescription.textContent};
+const popupInputName = document.querySelector('.popup__input_type_name');
+const popupInputJob = document.querySelector('.popup__input_type_description');
+
 
 const initialCards = [
   {
@@ -58,16 +60,16 @@ const userFormData = {
   errorClass: 'popup__error_visible',
   inputName: 'fullname',
   inputJob: 'job',
-  formSelector : 'popup__form',
+  formSelector : 'popup__form_user',
   spanError: '.popup__error'
 }
 
 export {
   popupProfile,
   btnEdit,
-  btnClose,
-  profileName,
-  profileDescription,
+  btnCloseUser,
+  userNameSelector,
+  userJobSelector,
   formElement,
   nameInput,
   jobInput,
@@ -84,5 +86,6 @@ export {
   initialCards,
   userFormData,
   imageSource,
-  userData
+  popupInputName,
+  popupInputJob
 }

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Места в России</title>
 </head>
 <body class="body">
@@ -20,6 +21,13 @@
         <p class="profile__paragraph">Исследователь океана</p>
       </div>
       <button class="profile__add" type="button"></button>
+    </section>
+    <section class="popup-place">
+      <div class="popup-place__container">
+        <button class="popup__close popup-place__close" type="button"></button>
+        <img src="#" alt="Изображение места" class="popup-place__image">
+        <p class="popup-place__title"></p>
+      </div>
     </section>
     <section class="elements"></section>
   </main>
@@ -42,13 +50,6 @@
       </div>
     </div>
     </template>
-    <section class="popup-place">
-      <div class="popup-place__container">
-        <button class="popup__close popup-place__close" type="button"></button>
-        <img src="#" alt="Изображение места" class="popup-place__image">
-        <p class="popup-place__title"></p>
-      </div>
-    </section>
     <section class="popup popup_user">
       <form class="popup__form popup__form_user" name="userprofile" novalidate>
         <button class="popup__close popup__close_user" type="button"></button>
@@ -77,5 +78,6 @@
         <button class="popup__button popup__button-save" type="submit" disabled>Сохранить</button>
       </form>
     </section>
+
 </body>
 </html>
