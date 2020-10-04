@@ -4,8 +4,6 @@ import  {
   popupProfile,
   btnEdit,
   btnClose,
-  nameInput,
-  jobInput,
   popupNewPlace,
   btnAddPlace,
   btnClosePlace,
@@ -15,61 +13,73 @@ import  {
   popupPlace,
   closeImage,
   initialCards,
-  userFormData
+  userFormData,
+  userData
 }  from './consts.js'
 
 import { Card } from './Card.js'
 import { FormValidator } from './FormValidator.js'
 import { Section } from './Section.js';
-import { Popup, PopupWithImage, PopupWithForm } from './Popup.js';
+import { PopupWithForm } from './Popup.js';
+import { PopupWithImage } from './PopupWithImage.js';
 import { UserInfo } from './UserInfo.js';
-
 
 const placeForm = new FormValidator(userFormData, popupNewPlace);
 const userForm = new FormValidator(userFormData, popupProfile);
-const userPopup = new Popup(popupProfile);
-const userInfo = new UserInfo({nameInput, jobInput});
-
 
 const imagePopup = new PopupWithImage(popupPlace);
 
-const cardsList = new Section({items: initialCards,
-    renderer: (item) => {
-      const card = new Card(item, '.template', {
-        handleCardClick: ()=> {
+const userPopup = new PopupWithForm(popupProfile, {
 
-          imagePopup.open(card);
-        }
-      });
+  handleFormSubmit: (formData) => {
+    const userInfo = new UserInfo(formData);
+    userInfo.setUserInfo();
+    userPopup.close();
+  }
+});
 
-      const cardElement = card.generateCard();
+userPopup.setEventListeners();
 
-      cardsList.addItem(cardElement);
-    },
-  }, cardsContainer);
+userForm.enableValidation();
+placeForm.enableValidation();
 
-cardsList.renderItems();
+
+function createCard(item) {
+  const card = new Card(item, '.template', {
+    handleCardClick: () => {
+
+      imagePopup.open(card);
+    }
+  });
+  return card.generateCard();
+}
 
 const placePopup = new PopupWithForm(popupNewPlace,
   {handleFormSubmit: (formData) => {
 
-    const newCard = new Card(formData, '.template', {
-      handleCardClick: () => {
-
-        imagePopup.open(newCard);
-      }
-    });
-
-    cardsContainer.prepend(newCard.generateCard());
+    cardsContainer.prepend(createCard(formData));
     placePopup.close();
   }
 });
 
-btnEdit.addEventListener('click', function () {
+placePopup.setEventListeners();
 
-  userForm.enableValidation();
-  userPopup.setEventListeners();
+
+const cardsList = new Section({items: initialCards,
+  renderer: (item) => {
+    const cardElement = createCard(item);
+
+    cardsList.addItem(cardElement);
+  },
+}, cardsContainer);
+
+cardsList.renderItems();
+
+btnEdit.addEventListener('click', function () {
+  userForm.clearPopup();
   userPopup.open();
+
+  const userInfo = new UserInfo(userData);
   userInfo.getUserInfo();
 
 });
@@ -86,11 +96,12 @@ closeImage.addEventListener('click', function(evt) {
 
 });
 
+placeForm.enableValidation();
 
 //Окно "Новое место"
 btnAddPlace.addEventListener('click', function () {
 
-  placeForm.enableValidation();
+  placeForm.clearPopup();
   placePopup.open();
 
   popupButton.classList.add('popup__button_disabled');

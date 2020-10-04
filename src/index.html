@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Места в России</title>
 </head>
 <body class="body">
@@ -21,13 +20,6 @@
         <p class="profile__paragraph">Исследователь океана</p>
       </div>
       <button class="profile__add" type="button"></button>
-    </section>
-    <section class="popup-place">
-      <div class="popup-place__container">
-        <button class="popup__close popup-place__close" type="button"></button>
-        <img src="#" alt="Изображение места" class="popup-place__image">
-        <p class="popup-place__title"></p>
-      </div>
     </section>
     <section class="elements"></section>
   </main>
@@ -50,9 +42,16 @@
       </div>
     </div>
     </template>
+    <section class="popup-place">
+      <div class="popup-place__container">
+        <button class="popup__close popup-place__close" type="button"></button>
+        <img src="#" alt="Изображение места" class="popup-place__image">
+        <p class="popup-place__title"></p>
+      </div>
+    </section>
     <section class="popup popup_user">
-      <form class="popup__form" name="userprofile" novalidate>
-        <button class="popup__close" type="button"></button>
+      <form class="popup__form popup__form_user" name="userprofile" novalidate>
+        <button class="popup__close popup__close_user" type="button"></button>
         <fieldset class="popup__profile">
           <label class="popup__label">Редактировать профиль</label>
           <input id="name-input" type="text" class="popup__input popup__input_type_name" name="fullname" placeholder="Имя" required minlength="2" maxlength="40">
@@ -69,15 +68,14 @@
         <button class="popup__close popup__close_new" type="button"></button>
         <fieldset class="popup__profile popup__profile_new">
           <label class="popup__label popup__label_new">Новое место</label>
-          <input id="place-input" type="text" class="popup__input popup__input-new_type_name" name="placename" placeholder="Название" required minlength="1" maxlength="30">
+          <input id="place-input" type="text" class="popup__input popup__input-new_type_name" name="name" placeholder="Название" required minlength="1" maxlength="30">
           <span id="place-input-error" class="popup__error"></span>
           <label></label>
-          <input id="url-input" type="url" class="popup__input popup__input-new_type_link" name="placelink" placeholder="Ссылка на картинку" required>
+          <input id="url-input" type="url" class="popup__input popup__input-new_type_link" name="link" placeholder="Ссылка на картинку" required>
           <span id="url-input-error" class="popup__error"></span>
         </fieldset>
         <button class="popup__button popup__button-save" type="submit" disabled>Сохранить</button>
       </form>
     </section>
-
 </body>
 </html>

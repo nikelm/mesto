@@ -20,6 +20,8 @@ const popupPlace = document.querySelector('.popup-place');
 const closeImage = document.querySelector('.popup-place__close');
 const imageSource = document.querySelector('.popup-place__image');
 
+const userData = {fullname: profileName.textContent, job: profileDescription.textContent};
+
 const initialCards = [
   {
       name: 'Архыз',
@@ -47,6 +49,7 @@ const initialCards = [
   }
 ];
 
+
 const userFormData = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
@@ -55,7 +58,8 @@ const userFormData = {
   errorClass: 'popup__error_visible',
   inputName: 'fullname',
   inputJob: 'job',
-  formSelector : 'popup__form'
+  formSelector : 'popup__form',
+  spanError: '.popup__error'
 }
 
 export {
@@ -79,5 +83,6 @@ export {
   closeImage,
   initialCards,
   userFormData,
-  imageSource
+  imageSource,
+  userData
 }

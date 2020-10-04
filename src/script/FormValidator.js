@@ -8,7 +8,12 @@ export class FormValidator {
     this._errorClass = data.errorClass;
     this._inputName = data.inputName;
     this._inputJob = data.inputJob;
+    this._spanPopup = data.spanError;
     this._popup = popup;
+    this._inputPopup = this._popup.querySelectorAll(this._inputSelector);
+    this._buttonPopup = this._popup.querySelectorAll(this._formSelector);
+    this._spanErrorPopup = this._popup.querySelectorAll(this._spanPopup);
+
   }
 
   _showInputError(inputElement) {
@@ -80,30 +85,27 @@ export class FormValidator {
     });
   }
 
-  _clearPopup() {
-    const inputPopup = this._popup.querySelectorAll('.popup__input');
-    const spanPopup = this._popup.querySelectorAll('.popup__error');
-    const buttonPopup = this._popup.querySelectorAll('.popup__button');
+/* Наставник сказал, что можно переопределять метод на публичный*/
 
-    inputPopup.forEach((inptElement) => {
+  clearPopup() {
+
+     this._inputPopup.forEach((inptElement) => {
       inptElement.classList.remove('popup__input_type_error');
     });
 
-    spanPopup.forEach((inptElement) => {
+    this._spanErrorPopup.forEach((inptElement) => {
       inptElement.textContent = '';
       inptElement.classList.remove('popup__error_visible');
     });
 
-    buttonPopup.forEach((inptElement) => {
-      if (inputPopup.value !== '') {
+    this._buttonPopup.forEach((inptElement) => {
+      if (this._inputPopup.value !== '') {
         inptElement.classList.remove('popup__button_disabled');
       }
     });
   }
 
   enableValidation() {
-
-    this._clearPopup(this._popup);
 
     this._popup.addEventListener('submit', (evt) => {
       evt.preventDefault();
