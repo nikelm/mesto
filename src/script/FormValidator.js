@@ -10,10 +10,10 @@ export class FormValidator {
     this._inputJob = data.inputJob;
     this._spanPopup = data.spanError;
     this._popup = popup;
-    this._inputPopup = this._popup.querySelectorAll(this._inputSelector); 
-    this._buttonPopup = this._popup.querySelectorAll(this._formSelector); 
+    this._inputPopup = this._popup.querySelectorAll(this._inputSelector);
+    this._buttonPopup = this._popup.querySelectorAll(this._submitButtonSelector);
     this._spanErrorPopup = this._popup.querySelectorAll(this._spanPopup);
- 
+
   }
 
   _showInputError(inputElement) {
@@ -88,21 +88,23 @@ export class FormValidator {
 /* Наставник сказал, что можно переопределять метод на публичный*/
 
   clearPopup() {
-    
-     this._inputPopup.forEach((inptElement) => { 
-      inptElement.classList.remove(this._inputErrorClass); 
-    }); 
- 
-    this._spanErrorPopup.forEach((inptElement) => { 
-      inptElement.textContent = ''; 
-      inptElement.classList.remove(this._errorClass); 
-    }); 
- 
-    this._buttonPopup.forEach((inptElement) => { 
-      if (this._inputPopup.value !== '') { 
-        inptElement.classList.remove(this._inactiveButtonClass); 
-      } 
-    }); 
+
+     this._inputPopup.forEach((inptElement) => {
+      inptElement.classList.remove(this._inputErrorClass);
+    });
+
+    this._spanErrorPopup.forEach((inptElement) => {
+      inptElement.textContent = '';
+      inptElement.classList.remove(this._errorClass);
+    });
+
+    this._buttonPopup.forEach((inptElement) => {
+      console.log(inptElement);
+      if (this._inputPopup.value !== '') {
+        inptElement.classList.remove(this._inactiveButtonClass);
+        inptElement.removeAttribute("disabled");
+      }
+    });
   }
 
   enableValidation() {

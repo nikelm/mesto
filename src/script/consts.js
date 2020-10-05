@@ -60,7 +60,7 @@ const userFormData = {
   errorClass: 'popup__error_visible',
   inputName: 'fullname',
   inputJob: 'job',
-  formSelector : 'popup__form_user',
+  formSelector : '.popup__form_user',
   spanError: '.popup__error'
 }
 
