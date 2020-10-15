@@ -1,0 +1,4 @@
+.card__delete {
+  visibility: hidden;
+  opacity: 0;
+}

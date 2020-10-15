@@ -7,6 +7,7 @@
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/avatar/avatar.css);
+@import url(../blocks/avatar-button/avatar-button.css);
 @import url(../blocks/popup/__input/_type/_error/popup__input_type_error.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/card/card.css);

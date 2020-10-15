@@ -1,0 +1,18 @@
+.avatar-button {
+  padding: 0;
+  width: 120px;
+  height: 120px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin-right: 30px;
+}
+
+
+.avatar-button {
+  background-image: url(../../images/Avatar_Edit.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
