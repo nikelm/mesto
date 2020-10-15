@@ -1,3 +1,5 @@
+import '../pages/index.css';
+
 import  {
   popupProfile,
   btnEdit,
@@ -47,7 +49,7 @@ function createMyCard(item) {
     }
   }, {
     handleDeleteIconClick: () => {
-     
+
       const popupDeleteForm = new PopupDeleteForm(popupDeletePlace, {
         handleFormSubmit: () => {
           apiCards.deleteMyCard(card._id).then(() => {
@@ -55,7 +57,7 @@ function createMyCard(item) {
           }).catch((err) => {
             console.log(err);
           })
-                  
+
         }
       });
       popupDeleteForm.open();
@@ -65,7 +67,7 @@ function createMyCard(item) {
   }, {
     handleLikeClick: () => {
       apiCards.addLikeCard(card._id).then((data) => {
-        
+
         card.likeAddCounter((data.likes).length);
         card.likeCardClick();
       }).catch((err) => {
@@ -75,7 +77,7 @@ function createMyCard(item) {
   }, {
     handleDeleteLikeClick: () => {
       apiCards.deleteLikeCard(card._id).then((data) => {
-       
+
         card.likeAddCounter((data.likes).length);
         card.likeCardClick();
       }).catch((err) => {
@@ -94,9 +96,9 @@ function createOtherCard(item) {
     }
   }, {
     handleLikeClick: () => {
-     
+
       apiCards.addLikeCard(card._id).then((data) => {
-       
+
         card.likeAddCounter((data.likes).length);
         card.likeCardClick();
       }).catch((err) => {
@@ -106,7 +108,7 @@ function createOtherCard(item) {
   }, {
     handleDeleteLikeClick: () => {
       apiCards.deleteLikeCard(card._id).then((data) => {
-       
+
         card.likeAddCounter((data.likes).length);
         card.likeCardClick();
       }).catch((err) => {
@@ -128,10 +130,10 @@ const apiCards = new Api({
 const cards = apiCards.getInitialCards();
 
 cards.then((data) => {
-  
+
   for (let i = 0; i < data.length; i++) {
     if (data[i].owner._id === '67cc4a327641f369d030b84f') {
-      const cardsList = new Section({items: data[i], 
+      const cardsList = new Section({items: data[i],
         renderer: (item) => {
           const cardElement = createMyCard(item);
           cardsList.addItem(cardElement);
@@ -141,7 +143,7 @@ cards.then((data) => {
 
 
     } else {
-      const cardsList = new Section({items: data[i], 
+      const cardsList = new Section({items: data[i],
         renderer: (item) => {
           const cardElement = createOtherCard(item);
           cardsList.addItem(cardElement);
@@ -149,7 +151,7 @@ cards.then((data) => {
       }, cardsContainer);
       cardsList.renderItems();
     }
-    
+
   }
 
 }).catch((err) => {
@@ -176,8 +178,8 @@ function getData() {
   }).catch((err) => {
     console.log(err);
   }).finally(() => {
-    renderLoading(false, popupButtonUser); 
-  }); 
+    renderLoading(false, popupButtonUser);
+  });
 }
 getData();
 
@@ -191,15 +193,15 @@ imagePopup.setEventListeners();
 const userInfo = new UserInfo({userNameSelector, userJobSelector});
 
 const userPopup = new PopupWithForm(popupProfile, {
-  
+
   handleFormSubmit: () => {
     renderLoading(true, popupButtonUser);
-    
+
     userInfo.saveUserInfo(popupInputName, popupInputJob);
     getData();
-    
+
     userPopup.close();
-  } 
+  }
 });
 
 userPopup.setEventListeners();
@@ -218,32 +220,32 @@ const placePopup = new PopupWithForm(popupNewPlace,
     }).catch((err) => {
       console.log(err);
     }).finally(() => {
-      renderLoading(false, popupButton); 
-    }); 
-    
+      renderLoading(false, popupButton);
+    });
+
     newCardCreate.then((formData) => {
-      
+
       cardsContainer.prepend(createMyCard(formData));
-      
-      
+
+
     })
 
     placePopup.close();
   }
-  
+
 })
 
 const ava = new PopupAvatar(popupAvatar, {handleFormSubmit: () => {
   renderLoading(true, popupButtonAvatar);
   apiCards.saveUserAvatar(linkInputAvatar.value).then((data) => {
-   
+
     userAvatar.src = data.avatar;
   }).catch((err) => {
     console.log(err);
   }).finally(() => {
-    renderLoading(false, popupButtonAvatar); 
+    renderLoading(false, popupButtonAvatar);
   });
-  } 
+  }
 });
 avatarForm.enableValidation();
 
@@ -252,7 +254,7 @@ btnAvatar.addEventListener('click', function() {
   ava.open();
   ava.setEventListeners();
   getData();
-  
+
 })
 
 closeAvatar.addEventListener('click', function() {
@@ -284,17 +286,17 @@ closeImage.addEventListener('click', function(evt) {
   imagePopup.close();
 
 });
-placeForm.enableValidation(); 
+placeForm.enableValidation();
 
 //Окно "Новое место"
 btnAddPlace.addEventListener('click', function () {
-  
+
   placeForm.clearPopup();
-  placePopup.open(); 
- 
-  popupButton.classList.add('popup__button_disabled'); 
-  popupButton.disabled = true; 
-  formElementPlace.reset(); 
+  placePopup.open();
+
+  popupButton.classList.add('popup__button_disabled');
+  popupButton.disabled = true;
+  formElementPlace.reset();
 
 });
 
@@ -305,7 +307,7 @@ btnClosePlace.addEventListener('click',function () {
 function renderLoading(isLoading, popupButton) {
   if (isLoading) {
     popupButton.textContent = 'Сохранение...';
-    
+
   } else {
     popupButton.textContent = 'Сохранить';
   }
