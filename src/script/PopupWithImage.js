@@ -6,7 +6,6 @@ export class PopupWithImage extends Popup {
   }
 
   open(card) {
-    
     this._image = card._image;
     this._text = card._text;
 
@@ -14,6 +13,6 @@ export class PopupWithImage extends Popup {
     this._popupSelector.querySelector('.popup-place__title').textContent = this._text;
     super.open();
   }
-  
+
 
 }
