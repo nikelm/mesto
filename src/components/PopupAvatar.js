@@ -9,14 +9,13 @@ export class PopupAvatar extends PopupWithForm {
   }
 
   setEventListeners() {
-    super.setEventListeners();
+    
 
     this._popupSelector.querySelector('.popup__form_avatar').addEventListener('submit', (evt) => {
       evt.preventDefault();
        
       this._handleFormSubmit();
       
-      //super.close();
     });
     
   }

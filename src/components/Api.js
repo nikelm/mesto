@@ -86,29 +86,29 @@ export class Api {
     })
   }
 
-  saveUserInfo(name, job) {
+  saveUserInfo(userData) {
+    
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        name: name.value,
-        about: job.value
-        
+        name: userData.name,
+        about: userData.about  
       })
     }).then((res) => {
       if (res.ok) {
         return res.json();
       }
-      return Promise.reject(new Error(`Ошибка: ${res.status}`));
-    })
-
+        return Promise.reject(new Error(`Ошибка: ${res.status}`));
+      })
+    
   }
 
   saveUserAvatar(link) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
-      body: JSON.stringify({avatar: link.value})
+      body: JSON.stringify({avatar: link.avatar})
     })
     .then((res) => {
       if (res.ok) {

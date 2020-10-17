@@ -16,6 +16,8 @@ const btnAddPlace = document.querySelector('.profile__add');
 const btnClosePlace = document.querySelector('.popup__close_new');
 const formElementPlace = document.querySelector('.popup__form_new');
 const formElementAvatar = document.querySelector('.popup__form_avatar');
+
+
 const nameInputPlace = document.querySelector('.popup__input-new_type_name');
 const linkInputPlace = document.querySelector('.popup__input-new_type_link');
 const popupButton = document.querySelector('.popup__button-save');
@@ -110,4 +112,5 @@ export {
   linkInputAvatar,
   popupButtonAvatar,
   popupButtonUser
+ 
 }

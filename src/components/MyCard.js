@@ -23,7 +23,7 @@ export class MyCard extends Card {
     deleteCardClick() {
     //  this._apiCards.deleteMyCard(data).then(() => {
         this._element.remove();
-        this._element = null;
+    //    this._element = null;
     //  }).catch((err) => console.log(err))
     }
   

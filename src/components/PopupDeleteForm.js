@@ -1,8 +1,8 @@
-import { Popup } from './Popup.js';
+import { PopupWithForm } from './PopupWithForm.js';
 
-export class PopupDeleteForm extends Popup {
+export class PopupDeleteForm extends PopupWithForm {
   constructor(popupSelector, {handleFormSubmit}) {
-    super(popupSelector);
+    super(popupSelector, handleFormSubmit);
     this._handleFormSubmit = handleFormSubmit;
   }
 

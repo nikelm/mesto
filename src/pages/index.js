@@ -70,7 +70,7 @@ Promise.all([
       closeImage.addEventListener('click', function(evt) {
         evt.preventDefault();
 
-        imagePopup.close();
+        imageMyPopup.close();
 
       });
     }
@@ -204,13 +204,28 @@ Promise.all([
 
   placePopup.setEventListeners();
 
-  function getInfo(userData) {
-    userNameSelector.textContent = userData.name;    // Забираем имя юзера с сервера
-    userJobSelector.textContent = userData.about;    // Профессию
-    userAvatar.src = userData.avatar;                // Ссылка на автар
-    linkInputAvatar.value = userData.avatar;         // Отображение ссылки в попапе
+  const userInfo = new UserInfo({userNameSelector, userJobSelector, linkInputAvatar}, userAvatar);
+
+
+
+  function setInfo(userData) {
+    apiCards.saveUserInfo(userData).then((data) => {
+
+    userInfo.setUserInfo(data);
+    /*
+    userNameSelector.textContent = data.name;    // Забираем имя юзера с сервера
+    userJobSelector.textContent = data.about;    // Профессию
+    userAvatar.src = data.avatar;                // Ссылка на автар
+    linkInputAvatar.value = data.avatar;         // Отображение ссылки в попапе
+    */
+    }).catch((err) => {
+      console.log(err);
+    }).finally(() => {
+      renderLoading(false, popupButtonUser);
+
+    });
   }
-  getInfo(userData);
+  setInfo(userData);
 
   const placeForm = new FormValidator(userFormData, popupNewPlace);
   placeForm.enableValidation();
@@ -219,26 +234,15 @@ Promise.all([
   const avatarForm = new FormValidator(userFormData, popupAvatar);
   avatarForm.enableValidation();
 
-  const userInfo = new UserInfo({userNameSelector, userJobSelector});
+
 
   const userPopup = new PopupWithForm(popupProfile, {
 
     handleFormSubmit: () => {
       renderLoading(true, popupButtonUser);
+      setInfo({name: popupInputName.value, about: popupInputJob.value});
 
-      apiCards.saveUserInfo(popupInputName, popupInputJob).then(() => {userPopup.close()}).
-      catch((err) => {
-        console.log(err);
-      }).finally(() => {
-        renderLoading(false, popupButtonUser);
-
-      });
-
-      apiCards.getUserData().then((userData) => {
-        getInfo(userData)
-      }).catch((err) => {
-        console.log(err);
-      })
+      userPopup.close();
 
     }
   });
@@ -247,18 +251,13 @@ Promise.all([
 
   const ava = new PopupAvatar(popupAvatar, {handleFormSubmit: () => {
     renderLoading(true, popupButtonAvatar);
-      apiCards.saveUserAvatar(linkInputAvatar).then(() =>{ava.close()}).catch((err) => {
-        console.log(err);
-      }).finally(() => {
-        renderLoading(false, popupButtonAvatar);
+    apiCards.saveUserAvatar({avatar: linkInputAvatar.value}).then((data) => {
+      setInfo(data);
 
-      });
 
-      apiCards.getUserData().then((userData) => {
-        getInfo(userData)
-      }).catch((err) => {
-        console.log(err);
       })
+    renderLoading(false, popupButtonAvatar);
+    ava.close();
     }
   });
 
@@ -267,7 +266,7 @@ Promise.all([
     avatarForm.clearPopup();
     ava.open();
     ava.setEventListeners();
-    getInfo(userData);
+    setInfo(userData)
 
   })
 
@@ -291,8 +290,8 @@ Promise.all([
     userForm.clearPopup();
     userPopup.open();
     const formValues = userInfo.getUserInfo();
-    popupInputName.value = formValues.userName;
-    popupInputJob.value = formValues.userJob;
+    popupInputName.value = formValues.name;
+    popupInputJob.value = formValues.about;
 
   });
 
