@@ -11,7 +11,7 @@ export class PopupDeleteForm extends Popup {
     this._popupSelector.querySelector('.popup__form').addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._handleFormSubmit();
-      super.close();
+      
     });
     
   }

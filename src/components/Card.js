@@ -56,7 +56,7 @@ export class Card {
     this._element = this._getTemplate();    // _element - приватное поле с разметкой
     this._setEventListeners(); //добавить обработчики
     
-    //this._checkLikes();
+    
     this._element.querySelector('.card__image').src = this._image;
     this._element.querySelector('.card__item-subtitle').textContent = this._text;
     this._element.querySelector('.card__counter').textContent = this._likes.length;
