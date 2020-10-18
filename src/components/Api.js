@@ -22,13 +22,13 @@ export class Api {
     })
     .then((res) => {
       if (res.ok) {
-
+       
         return res.json();
       }
       return Promise.reject(new Error(`Ошибка: ${res.status}`));
     })
-
-
+    
+    
   }
 
   getUserData() {
@@ -52,7 +52,7 @@ export class Api {
     })
     .then((res) => {
       if (res.ok) {
-
+        
         return res.json();
       }
       return Promise.reject(new Error(`Ошибка: ${res.status}`));
@@ -66,12 +66,12 @@ export class Api {
     })
     .then((res) => {
       if (res.ok) {
-
+        
         return res.json();
       }
       return Promise.reject(new Error(`Ошибка: ${res.status}`));
     })
-
+    
   }
 
   addLikeCard(id) {
@@ -81,7 +81,7 @@ export class Api {
     })
     .then((res) => {
       if (res.ok) {
-
+        
         return res.json();
       }
       return Promise.reject(new Error(`Ошибка: ${res.status}`));
@@ -89,13 +89,13 @@ export class Api {
   }
 
   saveUserInfo(userData) {
-
+    
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
         name: userData.name,
-        about: userData.about
+        about: userData.about  
       })
     }).then((res) => {
       if (res.ok) {
@@ -103,7 +103,7 @@ export class Api {
       }
         return Promise.reject(new Error(`Ошибка: ${res.status}`));
       })
-
+    
   }
 
   saveUserAvatar(link) {
@@ -128,7 +128,7 @@ export class Api {
     })
     .then((res) => {
       if (res.ok) {
-
+        
         return res.json();
       }
       return Promise.reject(new Error(`Ошибка: ${res.status}`));

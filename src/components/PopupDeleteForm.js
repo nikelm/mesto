@@ -7,12 +7,12 @@ export class PopupDeleteForm extends Popup {
   }
 
   setEventListeners() {
-    super.setEventListeners();
+    super.setEventListeners();  
     this._popupSelector.querySelector('.popup__form').addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._handleFormSubmit();
-
+      
     });
-
+    
   }
 }
