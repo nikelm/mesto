@@ -3,15 +3,12 @@ import './index.css';
 import  {
   popupProfile,
   btnEdit,
-  btnCloseUser,
   popupNewPlace,
   btnAddPlace,
-  btnClosePlace,
   formElementPlace,
   popupButton,
   cardsContainer,
   popupPlace,
-  closeImage,
   userFormData,
   userNameSelector,
   userJobSelector,
@@ -23,7 +20,6 @@ import  {
   popupDeletePlace,
   btnAvatar,
   popupAvatar,
-  closeAvatar,
   linkInputAvatar,
   popupButtonAvatar,
   popupButtonUser
@@ -37,10 +33,12 @@ import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupDeleteForm } from '../components/PopupDeleteForm.js';
-import { PopupAvatar } from '../components/PopupAvatar.js';
+
 import { UserInfo } from '../components/UserInfo.js';
 
+const userInfo = new UserInfo({userNameSelector, userJobSelector, linkInputAvatar}, userAvatar);
 
+const imagePopup = new PopupWithImage(popupPlace);
 
 
 const apiCards = new Api({
@@ -58,21 +56,14 @@ Promise.all([
 ]).then((values)=>{
   const [userData, cards] = values;
 
-  function createMyCard(item) {
+  function createMyCard(item, cardsValue) {
   const card = new MyCard(item, '.template', {
     handleCardClick: () => {
 
-      const imageMyPopup = new PopupWithImage(popupPlace, card);
-      imageMyPopup.setCardAttribute();
-      imageMyPopup.setEventListeners();
-      imageMyPopup.open();
+      imagePopup.open({link: cardsValue.link, name: cardsValue.name});
 
-      closeImage.addEventListener('click', function(evt) {
-        evt.preventDefault();
+      imagePopup.setEventListeners();
 
-        imageMyPopup.close();
-
-      });
     }
   }, {
     handleDeleteIconClick: () => {
@@ -116,21 +107,14 @@ Promise.all([
   return card.generateCard();
   }
 
-  function createOtherCard(item) {
+  function createOtherCard(item, cardsValue) {
   const card = new Card(item, '.template', {
     handleCardClick: () => {
 
-      const imagePopup = new PopupWithImage(popupPlace, card);
-      imagePopup.setCardAttribute();
+      imagePopup.open({link: cardsValue.link, name: cardsValue.name});
+
       imagePopup.setEventListeners();
-      imagePopup.open();
 
-      closeImage.addEventListener('click', function(evt) {
-        evt.preventDefault();
-
-        imagePopup.close();
-
-      });
     }
   }, {
     handleLikeClick: () => {
@@ -163,10 +147,10 @@ Promise.all([
     const cardsList = new Section({items: cards[i],
       renderer: (item) => {
         if (cards[i].owner._id === userData._id) {
-          const cardElement = createMyCard(item);
+          const cardElement = createMyCard(item, cards[i]);
             cardsList.addItem(cardElement, false);
         } else {
-            const cardElement = createOtherCard(item);
+            const cardElement = createOtherCard(item, cards[i]);
             cardsList.addItem(cardElement, true);
           }
         }
@@ -178,46 +162,36 @@ Promise.all([
   const placePopup = new PopupWithForm(popupNewPlace,
     {handleFormSubmit: () => {
       renderLoading(true, popupButton);
-      const newCardCreate = apiCards.addCardNew({
+      apiCards.addCardNew({
         name: nameInputPlace.value,
         link: linkInputPlace.value
+      }).then((formData) => {
+          const cardsList = new Section({items: formData,
+            renderer: (item) => {
+              const cardElement = createMyCard(item, {link: linkInputPlace.value, name: nameInputPlace.value});
+              cardsList.addItem(cardElement, false);
+            }
+          }, cardsContainer);
+          cardsList.renderItems();
+          placePopup.close();   //Закрытие в блоке then
       }).
       catch((err) => {
         console.log(err);
       }).finally(() => {
         renderLoading(false, popupButton);
       });
-
-      newCardCreate.then((formData) => {
-        const cardsList = new Section({items: formData,
-          renderer: (item) => {
-            const cardElement = createMyCard(item);
-            cardsList.addItem(cardElement, false);
-          }
-        }, cardsContainer);
-        cardsList.renderItems();
-      })
-      placePopup.close()
     }
 
   })
 
   placePopup.setEventListeners();
 
-  const userInfo = new UserInfo({userNameSelector, userJobSelector, linkInputAvatar}, userAvatar);
-
-
 
   function setInfo(userData) {
     apiCards.saveUserInfo(userData).then((data) => {
 
     userInfo.setUserInfo(data);
-    /*
-    userNameSelector.textContent = data.name;    // Забираем имя юзера с сервера
-    userJobSelector.textContent = data.about;    // Профессию
-    userAvatar.src = data.avatar;                // Ссылка на автар
-    linkInputAvatar.value = data.avatar;         // Отображение ссылки в попапе
-    */
+    userPopup.close();      //Закрытие в блоке then
     }).catch((err) => {
       console.log(err);
     }).finally(() => {
@@ -241,23 +215,21 @@ Promise.all([
     handleFormSubmit: () => {
       renderLoading(true, popupButtonUser);
       setInfo({name: popupInputName.value, about: popupInputJob.value});
-
-      userPopup.close();
-
     }
   });
 
   userPopup.setEventListeners();
 
-  const ava = new PopupAvatar(popupAvatar, {handleFormSubmit: () => {
+  const ava = new PopupWithForm(popupAvatar, {handleFormSubmit: () => {
     renderLoading(true, popupButtonAvatar);
     apiCards.saveUserAvatar({avatar: linkInputAvatar.value}).then((data) => {
       setInfo(data);
-
-
+      ava.close();    //Закрытие в блоке then
+      }).catch((err) => {
+        console.log(err);
+      }).finally(() => {
+        renderLoading(false, popupButtonAvatar);
       })
-    renderLoading(false, popupButtonAvatar);
-    ava.close();
     }
   });
 
@@ -295,20 +267,6 @@ Promise.all([
 
   });
 
-  // Кнопки закрытия попапов без обращения к серверу
-  closeAvatar.addEventListener('click', function() {
-    ava.close();
-  })
-
-  btnCloseUser.addEventListener('click', function () {
-
-    userPopup.close();
-  });
-
-  btnClosePlace.addEventListener('click',function () {
-    placePopup.close();
-  });
-
 
   function renderLoading(isLoading, popupButton) {
     if (isLoading) {
@@ -319,4 +277,6 @@ Promise.all([
     }
   }
 
+}).catch((err) => {
+  console.log(err);
 })
